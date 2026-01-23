@@ -85,7 +85,18 @@ public class Doraemon {
                     System.out.println("    Got it. I've added this task:\n" + "    " + task.toString());
                     System.out.println("    Now you have " + tasks.size() + " tasks in your list.");
                     System.out.println("    ____________________________________________________________");
-                } else {
+                }
+                else if (command.equals("delete")) {
+                    int task_number = Integer.parseInt(parts[1]);
+                    Task curr_task = tasks.get(task_number - 1);
+                    tasks.remove(task_number - 1);
+                    System.out.println("    ____________________________________________________________");
+                    System.out.println("    Noted. I've removed this task:");
+                    System.out.println("      " + curr_task.toString());
+                    System.out.println("    Now you have " + tasks.size() + " tasks in the list.");
+                    System.out.println("    ____________________________________________________________");
+                }
+                else {
                     throw new DoraemonException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DoraemonException e) {

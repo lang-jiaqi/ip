@@ -52,5 +52,15 @@
     2. [D][ ]return book  (by: by Sunday)
     3. [E][ ]project meeting  (from: from Mon 2pm , to: to 4pm)
     ____________________________________________________________
+    ____________________________________________________________
+    Noted. I've removed this task:
+      [T][ ]read book
+    Now you have 2 tasks in the list.
+    ____________________________________________________________
+    ____________________________________________________________
+    Here are the tasks in your list:
+    1. [D][ ]return book  (by: by Sunday)
+    2. [E][ ]project meeting  (from: from Mon 2pm , to: to 4pm)
+    ____________________________________________________________
     Bye. Hope to see you again soon!
     ____________________________________________________________
