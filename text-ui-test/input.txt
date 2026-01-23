@@ -1,3 +1,6 @@
+event
+deadline
+todo
 list
 todo read book
 deadline return book /by Sunday
