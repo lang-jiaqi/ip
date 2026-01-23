@@ -11,7 +11,7 @@ public class Doraemon {
         Boolean end = false;
         while (!end) {
             String input = sc.nextLine();
-            String[] parts = input.split(" ");
+            String[] parts = input.split(" ",2);
             String command = parts[0];
 
 
@@ -27,7 +27,7 @@ public class Doraemon {
                 System.out.println("    Here are the tasks in your list:");
                 for (int i = 0; i < tasks.size(); i++) {
                     Task curr_task = tasks.get(i);
-                    System.out.println("    " + (i+1) + ". " + curr_task.getSatusIcon() + curr_task.description);
+                    System.out.println("    " + (i+1) + ". " + curr_task.toString());
                 }
                 System.out.println("    ____________________________________________________________");
             }
@@ -37,7 +37,7 @@ public class Doraemon {
                 curr_task.markAsDone();
                 System.out.println("    ____________________________________________________________");
                 System.out.println("    Nice! I've marked this task as done:");
-                System.out.println("      " + curr_task.getSatusIcon() + curr_task.getDescription());
+                System.out.println("      " + curr_task.toString());
                 System.out.println("    ____________________________________________________________");
                 }
             else if(command.equals("unmark")) {
@@ -46,17 +46,39 @@ public class Doraemon {
                 curr_task.Unmark();
                 System.out.println("    ____________________________________________________________");
                 System.out.println("    OK, I've marked this task as not done yet:");
-                System.out.println("      " + curr_task.getSatusIcon() + curr_task.getDescription());
+                System.out.println("      " + curr_task.toString());
                 System.out.println("    ____________________________________________________________");
             }
             else {
-                Task task = new Task(input);
-                tasks.add(task);
-                System.out.println("    ____________________________________________________________");
-                System.out.println("    added:" + task.getDescription());
-                System.out.println("    ____________________________________________________________");
-            }
-            }
+                Task task = null;
+                if (command.equals("todo")) {
+                    String[] content = parts[1].split(" ",2);
+                    String task_name = content[0];
+                    task = new ToDo(task_name);
+                    tasks.add(task);
+                }
+                else if (command.equals("deadline")) {
+                    String[] content = parts[1].split("/",2);
+                    String task_name = content[0];
+                    String deadline = content[1];
+                    task = new Deadline(task_name,deadline);
+                    tasks.add(task);
+                }
 
+                else if (command.equals("event")) {
+                    String[] content = parts[1].split("/",3);
+                    String task_name = content[0];
+                    String from = content[1];
+                    String to = content[2];
+                    task = new Event(task_name,from,to);
+                    tasks.add(task);
+                }
+                System.out.println("    ____________________________________________________________");
+                System.out.println("    Got it. I've added this task:\n" + task.toString());
+                System.out.println("    Now you have " + tasks.size() + " tasks in your list.");
+                System.out.println("    ____________________________________________________________");
+                }
+            }
+            }
         }
-    }
+

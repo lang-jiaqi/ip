@@ -1,31 +1,31 @@
-public class Task {
-    protected String description;
-    protected boolean isDone;
-    public Task(String description) {
-        this.description = description;
-        this.isDone = false;
+public class Deadline extends Task {
+    protected String by;
+
+    public Deadline(String description, String by) {
+        super(description);
+        this.by = by;
     }
 
+    @Override
     public String toString() {
-        return  this.getSatusIcon() + description;
+        return "[D]" + super.toString() + " (by: " + by + ")";
     }
-    public boolean isDone() {
-        return isDone;
-    }
+    @Override
     public String getSatusIcon(){
         return (isDone ? "[X]" : "[ ]");
     }
-
+    @Override
     public String getDescription() {
         return description;
     }
-
+    @Override
     public void markAsDone() {
         isDone = true;
     }
-
+    @Override
     public void Unmark() {
         isDone = false;
     }
 
 }
+
