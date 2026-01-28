@@ -1,3 +1,7 @@
+/**
+ * Represents an event task with a start time and an end time.
+ */
+
 public class Event extends Task {
     protected String from;
     protected String to;

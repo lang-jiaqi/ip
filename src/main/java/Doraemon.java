@@ -1,10 +1,19 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the Doraemon chatbot.
+ */
 public class Doraemon {
+    /**
+     * It reads user commands from standard input and executes
+     * task-related actions such as add, list, mark, unmark, and delete.
+     * @param args
+     */
     public static void main(String[] args) {
+        Storage storage = new Storage("./data/Doraemon.txt");
+        ArrayList<Task> tasks = storage.loadFromFile();
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
 
         System.out.println("    ____________________________________________________________");
         System.out.println("    Hello! I'm Doraemon\n    What can I do for you?");
@@ -34,6 +43,8 @@ public class Doraemon {
                     int task_number = Integer.parseInt(parts[1]);
                     Task curr_task = tasks.get(task_number - 1);
                     curr_task.markAsDone();
+                    storage.saveAll(tasks);
+
                     System.out.println("    ____________________________________________________________");
                     System.out.println("    Nice! I've marked this task as done:");
                     System.out.println("      " + curr_task.toString());
@@ -42,6 +53,8 @@ public class Doraemon {
                     int task_number = Integer.parseInt(parts[1]);
                     Task curr_task = tasks.get(task_number - 1);
                     curr_task.Unmark();
+                    storage.saveAll(tasks);
+
                     System.out.println("    ____________________________________________________________");
                     System.out.println("    OK, I've marked this task as not done yet:");
                     System.out.println("      " + curr_task.toString());
@@ -90,6 +103,7 @@ public class Doraemon {
                     int task_number = Integer.parseInt(parts[1]);
                     Task curr_task = tasks.get(task_number - 1);
                     tasks.remove(task_number - 1);
+                    storage.saveAll(tasks);
                     System.out.println("    ____________________________________________________________");
                     System.out.println("    Noted. I've removed this task:");
                     System.out.println("      " + curr_task.toString());

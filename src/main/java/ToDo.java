@@ -1,3 +1,7 @@
+/**
+ * Represents a todo task without any date or time.
+ */
+
 public class ToDo extends Task {
 
     public ToDo(String description) {
