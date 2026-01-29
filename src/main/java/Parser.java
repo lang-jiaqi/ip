@@ -35,13 +35,13 @@ public class Parser {
                 ToDo todo = new ToDo(arguments);
                 return new AddCommand(todo);
             case "deadline":
-                String[] dParts = arguments.split(" ", 2);
-                if(dParts.length != 2) throw new DoraemonException("Deadline format: description /by date");
+                String[] dParts = arguments.split(" / ", 2);
+                if(dParts.length != 2) throw new DoraemonException("Deadline format: description / by date");
                 Deadline deadline = new Deadline(dParts[0], dParts[1]);
                 return new AddCommand(deadline);
             case "event":
-                String[] eParts = arguments.split(" ", 3);
-                if(eParts.length != 3) throw new DoraemonException("Event format: description /from start /to end");
+                String[] eParts = arguments.split(" / ", 3);
+                if(eParts.length != 3) throw new DoraemonException("Event format: description / from start / to end");
                 Event event = new Event(eParts[0], eParts[1], eParts[2]);
                 return new AddCommand(event);
             default:

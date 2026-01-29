@@ -13,12 +13,12 @@ public class TaskList {
         tasks.add(task);
     }
 
-    public Task delete(int index) throws DoraemonException {
-        return tasks.remove(index);
+    public Task delete(int task_number) throws DoraemonException {
+        return tasks.remove(task_number - 1 );
     }
 
-    public Task getTask(int index) {
-        return tasks.get(index);
+    public Task getTask(int task_number) throws DoraemonException {
+        return tasks.get(task_number);
     }
 
     public int size() {

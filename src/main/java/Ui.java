@@ -22,13 +22,14 @@ public class Ui {
         showLine();
     }
 
-    public void showListOfTasks(TaskList tasks) {
+    public void showListOfTasks(TaskList tasks) throws DoraemonException {
         showLine();
         System.out.println("    Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
-            Task curr_task = tasks.getTasks(i);
+            Task curr_task = tasks.getTask(i);
             System.out.println("    " + (i + 1) + ". " + curr_task.toString());
         }
+        showLine();
     }
 
     public void markMessage(Task task) {

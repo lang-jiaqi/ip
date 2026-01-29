@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import java.io.File;
@@ -16,14 +17,15 @@ public class Storage {
      * Save the tasks to the disk, if the folder doesn't exist,create a folder.
      * @param tasks
      */
-    public void saveAll(ArrayList<Task> tasks) {
+    public void saveAll(TaskList tasks) throws DoraemonException {
         try{
             File file = new File(filePath);
             if (!file.getParentFile().exists()){
                 file.getParentFile().mkdir();
             }
             FileWriter fw = new FileWriter("./data/Doraemon.txt");
-            for (Task task : tasks){
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.getTask(i);
                 fw.write(task.toFileFormat() + System.lineSeparator());
             }
             fw.close();
@@ -37,7 +39,7 @@ public class Storage {
      * load the tasks from the disk, if the file doesn't exist, just return.
      * @return an arraylist of asks
      */
-    public ArrayList<Task> loadFromFile() {
+    public ArrayList<Task> loadFromFile() throws DoraemonException {
         ArrayList<Task> loadedTasks = new ArrayList<>();
         File file = new File(filePath);
         if(!file.exists()){
@@ -74,8 +76,8 @@ public class Storage {
                 String type = parts[0];
                 boolean  isDone = parts[1].equals("1");
             }
-        } catch (IOException e){
-            System.out.println("loading failed" + e.getMessage());
+        } catch (FileNotFoundException e) {
+            throw new DoraemonException("Doraemon file not found:" + filePath);
         }
         return loadedTasks;
     }
