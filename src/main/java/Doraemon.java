@@ -5,12 +5,49 @@ import java.util.Scanner;
  * Represents the Doraemon chatbot.
  */
 public class Doraemon {
+    TaskList tasks;
+    Storage storage;
+    Ui ui;
+
+    public Doraemon(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.loadFromFile());
+        } catch (DoraemonException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+        ui.showWelcomeMessage();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DoraemonException e) {
+                ui.showError(e.getMessage());
+            }
+        }
+        ui.showByeMessage();
+    }
+
+
+    public static void main(String[] args) {
+        new Doraemon("./data/Doraemon.txt").run();
+    }
+}
+
     /**
      * It reads user commands from standard input and executes
      * task-related actions such as add, list, mark, unmark, and delete.
      * @param args
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Storage storage = new Storage("./data/Doraemon.txt");
         ArrayList<Task> tasks = storage.loadFromFile();
         Scanner sc = new Scanner(System.in);
@@ -94,10 +131,8 @@ public class Doraemon {
                         task = new Event(task_name, from, to);
                         tasks.add(task);
                     }
-                    System.out.println("    ____________________________________________________________");
-                    System.out.println("    Got it. I've added this task:\n" + "    " + task.toString());
-                    System.out.println("    Now you have " + tasks.size() + " tasks in your list.");
-                    System.out.println("    ____________________________________________________________");
+                    int task_number = tasks.size();
+                    ui.addTaskMessage(task,task_number);
                 }
                 else if (command.equals("delete")) {
                     int task_number = Integer.parseInt(parts[1]);
@@ -122,4 +157,4 @@ public class Doraemon {
     }
 }
 
-
+*/
