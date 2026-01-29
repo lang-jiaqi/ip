@@ -7,7 +7,7 @@ public class ToDoTest {
     @Test
     public void testToString_newToDo_correctFormat() {
         ToDo todo = new ToDo("read book");
-        assertEquals("[T][ ] read book", todo.toString());
+        assertEquals("[T][ ]read book", todo.toString());
     }
 
     @Test
@@ -15,9 +15,9 @@ public class ToDoTest {
         ToDo todo = new ToDo("read book");
         todo.markAsDone();
         assertEquals("[X]", todo.getSatusIcon());
-        assertEquals("[T][X] read book", todo.toString());
+        assertEquals("[T][X]read book", todo.toString());
         todo.Unmark();
-        assertEquals("[T][ ] read book", todo.toString());
+        assertEquals("[T][ ]read book", todo.toString());
     }
 
     @Test
