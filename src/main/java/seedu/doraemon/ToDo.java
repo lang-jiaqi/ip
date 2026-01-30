@@ -1,25 +1,25 @@
+<<<<<<< HEAD:src/main/java/doraemon/ToDo.java
 package doraemon;
+=======
+package seedu.doraemon;
+>>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/ToDo.java
 
 /**
- * Represents an event task with a start time and an end time.
+ * Represents a todo task without any date or time.
  */
 
-public class Event extends Task {
-    protected String from;
-    protected String to;
+public class ToDo extends Task {
 
-    public Event(String description, String from, String to) {
+    public ToDo(String description) {
         super(description);
-        this.from = from;
-        this.to = to;
     }
     @Override
     public String toFileFormat() {
-        return "E | " + getSatusIconForFuile() + " | " + description + " | " + from + " | " + to;
+        return "T | " + getSatusIconForFuile() + " | " + description;
     }
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from + ", to: " + to + ")";
+        return "[T]" + super.toString();
     }
     @Override
     public String getSatusIcon(){
@@ -39,3 +39,5 @@ public class Event extends Task {
     }
 
 }
+
+

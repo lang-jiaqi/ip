@@ -1,5 +1,13 @@
+<<<<<<< HEAD:src/main/java/doraemon/UnmarkCommand.java
 package doraemon;
 
+=======
+package seedu.doraemon;
+
+/**
+ * Represents a command that marks a task as undone.
+ */
+>>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/UnmarkCommand.java
 public class UnmarkCommand extends Command {
     private int taskIndex;
 

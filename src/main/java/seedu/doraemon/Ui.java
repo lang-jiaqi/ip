@@ -1,20 +1,39 @@
+<<<<<<< HEAD:src/main/java/doraemon/Ui.java
 package doraemon;
+=======
+package seedu.doraemon;
+>>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Ui.java
 
 import java.util.Scanner;
 
+/**
+ * Text UI of the application.
+ * Deals with interactions with the user, such as printing messages and reading input.
+ */
 public class Ui {
     private Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Prints a horizontal dividing line.
+     */
     public void showLine(){
         System.out.println("    ____________________________________________________________");
     }
 
     public void showWelcomeMessage() {
         showLine();
+<<<<<<< HEAD:src/main/java/doraemon/Ui.java
         System.out.println("    Hello! I'm seedu.doraemon.Ui.Doraemon\n    What can I do for you?");
+=======
+        System.out.println("    Hello! I'm seedu.doraemon.Doraemon\n    What can I do for you?");
+>>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Ui.java
         showLine();
     }
 
+    /**
+     * Reads the next line of input from the user.
+     * @return The full string entered by the user.
+     */
     public String readCommand() {
         return scanner.nextLine();
     }
@@ -24,6 +43,11 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Shows a list of tasks to the user.
+     * @param tasks The TaskList containing tasks to be displayed.
+     * @throws DoraemonException If there is an error retrieving tasks.
+     */
     public void showListOfTasks(TaskList tasks) throws DoraemonException {
         showLine();
         System.out.println("    Here are the tasks in your list:");

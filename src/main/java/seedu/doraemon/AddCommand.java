@@ -1,9 +1,8 @@
-package doraemon;
+package seedu.doraemon;
 
 /**
- * Represents a command to add a task to the task list.
- * This class encapsulates the action of adding a task, which includes updating
- * the in-memory list, persisting the change to storage, and notifying the user via the UI.
+ * Represents an AddCommand.
+ * E.g. adding a todo/deadline/event task
  */
 public class AddCommand extends Command {
     private Task task;

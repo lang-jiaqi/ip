@@ -1,5 +1,13 @@
+<<<<<<< HEAD:src/main/java/doraemon/MarkCommand.java
 package doraemon;
 
+=======
+package seedu.doraemon;
+
+/**
+ * Represents the command that mark a task is done.
+ */
+>>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/MarkCommand.java
 public class MarkCommand extends Command {
     private int  taskIndex;
 

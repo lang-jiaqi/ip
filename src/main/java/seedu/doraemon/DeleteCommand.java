@@ -1,5 +1,13 @@
+<<<<<<< HEAD:src/main/java/doraemon/DeleteCommand.java
 package doraemon;
 
+=======
+package seedu.doraemon;
+
+/**
+ * Represents a command that delete some tasks.
+ */
+>>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/DeleteCommand.java
 public class DeleteCommand extends Command {
     private int taskIndex;
 

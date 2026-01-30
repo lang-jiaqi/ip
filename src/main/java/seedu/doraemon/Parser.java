@@ -1,6 +1,22 @@
+<<<<<<< HEAD:src/main/java/doraemon/Parser.java
 package doraemon;
 
+=======
+package seedu.doraemon;
+
+/**
+ * Parses user input into executable commands.
+ * It interprets the command word and extracts necessary arguments for each action.
+ */
+>>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Parser.java
 public class Parser {
+    /**
+     * Parses the full user input string and returns the corresponding Command object.
+     *
+     * @param fullCommand The raw input string from the user.
+     * @return A Command object that represents the action to be taken.
+     * @throws DoraemonException If the command word is unknown or arguments are invalid.
+     */
     public static Command parse(String fullCommand) throws DoraemonException {
         String[] parts = fullCommand.trim().split(" ", 2);
         String commandWord = parts[0];

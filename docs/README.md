@@ -1,4 +1,4 @@
-# doraemon.Ui.Doraemon User Guide
+# seedu.doraemon.Doraemon User Guide
 
 // Update the title above to match the actual product name
 

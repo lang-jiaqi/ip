@@ -1,4 +1,8 @@
+<<<<<<< HEAD:src/main/java/doraemon/Task.java
 package doraemon;
+=======
+package seedu.doraemon;
+>>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Task.java
 
 /**
  * Represents a generic task with a description and completion status.
