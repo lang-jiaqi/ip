@@ -1,11 +1,18 @@
 package seedu.doraemon;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
+import java.io.FileNotFoundException;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
+
+import java.time.LocalTime;
 import java.util.Scanner;
+import java.util.ArrayList;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
  */
@@ -68,10 +75,13 @@ public class Storage {
                         t = new ToDo(parts[2]);
                         break;
                     case "D":
-                        t = new Deadline(parts[2],parts[3]);
+                        LocalDate date = LocalDate.parse(parts[3]);
+                        t = new Deadline(parts[2], date);
                         break;
                     case "E":
-                        t = new Event(parts[2],parts[3],parts[4]);
+                        LocalDate startTime = LocalDate.parse(parts[3]);
+                        LocalDate endTime = LocalDate.parse(parts[4]);
+                        t = new Event(parts[2],startTime,endTime);
                         break;
                 }
                 if (t!= null) {

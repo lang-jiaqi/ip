@@ -1,6 +1,8 @@
 
 package seedu.doraemon;
 
+import java.time.LocalDate;
+
 /**
  * Represents an event task with a start time and an end time.
  */
@@ -9,7 +11,7 @@ public class Event extends Task {
     protected String from;
     protected String to;
 
-    public Event(String description, String from, String to) {
+    public Event(String description, LocalDate startdate, LocalDate enddate) {
         super(description);
         this.from = from;
         this.to = to;

@@ -1,6 +1,8 @@
 
 package seedu.doraemon;
 
+import java.time.LocalDate;
+
 /**
  * Parses user input into executable commands.
  * It interprets the command word and extracts necessary arguments for each action.
@@ -52,12 +54,15 @@ public class Parser {
             case "deadline":
                 String[] dParts = arguments.split(" / ", 2);
                 if(dParts.length != 2) throw new DoraemonException("seedu.doraemon.Deadline format: description / by date");
-                Deadline deadline = new Deadline(dParts[0], dParts[1]);
+                LocalDate date = LocalDate.parse(dParts[1]);
+                Deadline deadline = new Deadline(dParts[0], date);
                 return new AddCommand(deadline);
             case "event":
                 String[] eParts = arguments.split(" / ", 3);
                 if(eParts.length != 3) throw new DoraemonException("seedu.doraemon.Event format: description / from start / to end");
-                Event event = new Event(eParts[0], eParts[1], eParts[2]);
+                LocalDate dateFrom = LocalDate.parse(eParts[1]);
+                LocalDate dateTo = LocalDate.parse(eParts[2]);
+                Event event = new Event(eParts[0], dateFrom, dateTo);
                 return new AddCommand(event);
             default:
                 throw new DoraemonException("Unknown command: " + commandWord);

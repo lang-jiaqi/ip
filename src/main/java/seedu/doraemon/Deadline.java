@@ -1,6 +1,8 @@
 package seedu.doraemon;
 
 
+import java.time.LocalDate;
+
 /**
  * Represents a task that must be completed before a specific deadline.
  */
@@ -8,7 +10,7 @@ package seedu.doraemon;
 public class Deadline extends Task {
     protected String by;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate date) {
         super(description);
         this.by = by;
     }
