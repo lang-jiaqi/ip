@@ -1,8 +1,5 @@
-<<<<<<< HEAD:src/main/java/doraemon/Event.java
-package doraemon;
-=======
+
 package seedu.doraemon;
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Event.java
 
 /**
  * Represents an event task with a start time and an end time.

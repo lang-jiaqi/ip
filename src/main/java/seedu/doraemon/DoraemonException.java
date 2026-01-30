@@ -1,6 +1,4 @@
-<<<<<<< HEAD:src/main/java/doraemon/DoraemonException.java
-package doraemon;
-
+package seedu.doraemon;
 /**
  * Represents an exception specific to the seedu.doraemon.Ui.Doraemon application.
 =======

@@ -1,11 +1,4 @@
-<<<<<<< HEAD:src/main/java/doraemon/TaskList.java
-package doraemon;
-
-import java.util.ArrayList;
-=======
 package seedu.doraemon;
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/TaskList.java
-
 import java.util.ArrayList;
 /**
  * Contains the task list and has operations to add/delete tasks in the list.
@@ -27,17 +20,10 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-<<<<<<< HEAD:src/main/java/doraemon/TaskList.java
-    public TaskList() {
-        this.tasks = new ArrayList<>();
-    }
-
-=======
     /**
      * Adds a task to the list.
      * @param task The task to be added.
      */
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/TaskList.java
     public void add(Task task) {
         tasks.add(task);
     }

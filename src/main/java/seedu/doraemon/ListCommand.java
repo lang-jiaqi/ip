@@ -1,13 +1,10 @@
-<<<<<<< HEAD:src/main/java/doraemon/ListCommand.java
-package doraemon;
 
-=======
 package seedu.doraemon;
 
 /**
  * Represents the command to show the content in current list.
  */
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/ListCommand.java
+
 public class ListCommand extends Command {
 
     @Override

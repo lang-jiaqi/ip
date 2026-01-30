@@ -1,9 +1,4 @@
-<<<<<<< HEAD:src/main/java/doraemon/Ui.java
-package doraemon;
-=======
 package seedu.doraemon;
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Ui.java
-
 import java.util.Scanner;
 
 /**
@@ -22,11 +17,7 @@ public class Ui {
 
     public void showWelcomeMessage() {
         showLine();
-<<<<<<< HEAD:src/main/java/doraemon/Ui.java
-        System.out.println("    Hello! I'm seedu.doraemon.Ui.Doraemon\n    What can I do for you?");
-=======
         System.out.println("    Hello! I'm seedu.doraemon.Doraemon\n    What can I do for you?");
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Ui.java
         showLine();
     }
 

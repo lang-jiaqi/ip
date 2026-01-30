@@ -1,8 +1,5 @@
-<<<<<<< HEAD:src/main/java/doraemon/Command.java
-package doraemon;
-=======
+
 package seedu.doraemon;
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Command.java
 
 /**
  * An abstract class af all command

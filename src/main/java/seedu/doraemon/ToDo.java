@@ -1,8 +1,5 @@
-<<<<<<< HEAD:src/main/java/doraemon/ToDo.java
-package doraemon;
-=======
+
 package seedu.doraemon;
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/ToDo.java
 
 /**
  * Represents a todo task without any date or time.

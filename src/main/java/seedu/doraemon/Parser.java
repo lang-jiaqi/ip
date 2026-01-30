@@ -1,14 +1,11 @@
-<<<<<<< HEAD:src/main/java/doraemon/Parser.java
-package doraemon;
 
-=======
 package seedu.doraemon;
 
 /**
  * Parses user input into executable commands.
  * It interprets the command word and extracts necessary arguments for each action.
  */
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Parser.java
+
 public class Parser {
     /**
      * Parses the full user input string and returns the corresponding Command object.

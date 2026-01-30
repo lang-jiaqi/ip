@@ -1,8 +1,5 @@
-<<<<<<< HEAD:src/main/java/doraemon/Deadline.java
-package doraemon;
-=======
 package seedu.doraemon;
->>>>>>> branch-A-JavaDoc:src/main/java/seedu/doraemon/Deadline.java
+
 
 /**
  * Represents a task that must be completed before a specific deadline.
