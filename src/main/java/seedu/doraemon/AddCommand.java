@@ -1,3 +1,9 @@
+package seedu.doraemon;
+
+/**
+ * Represents an AddCommand.
+ * E.g. adding a todo/deadline/event task
+ */
 public class AddCommand extends Command {
     private Task task;
 

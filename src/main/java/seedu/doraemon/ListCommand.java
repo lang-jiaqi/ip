@@ -1,3 +1,8 @@
+package seedu.doraemon;
+
+/**
+ * Represents the command to show the content in current list.
+ */
 public class ListCommand extends Command {
 
     @Override

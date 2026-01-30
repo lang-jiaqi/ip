@@ -1,3 +1,8 @@
+package seedu.doraemon;
+
+/**
+ * Represents a command that marks a task as undone.
+ */
 public class UnmarkCommand extends Command {
     private int taskIndex;
 

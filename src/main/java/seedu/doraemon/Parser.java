@@ -1,4 +1,17 @@
+package seedu.doraemon;
+
+/**
+ * Parses user input into executable commands.
+ * It interprets the command word and extracts necessary arguments for each action.
+ */
 public class Parser {
+    /**
+     * Parses the full user input string and returns the corresponding Command object.
+     *
+     * @param fullCommand The raw input string from the user.
+     * @return A Command object that represents the action to be taken.
+     * @throws DoraemonException If the command word is unknown or arguments are invalid.
+     */
     public static Command parse(String fullCommand) throws DoraemonException {
         String[] parts = fullCommand.trim().split(" ", 2);
         String commandWord = parts[0];
@@ -36,12 +49,12 @@ public class Parser {
                 return new AddCommand(todo);
             case "deadline":
                 String[] dParts = arguments.split(" / ", 2);
-                if(dParts.length != 2) throw new DoraemonException("Deadline format: description / by date");
+                if(dParts.length != 2) throw new DoraemonException("seedu.doraemon.Deadline format: description / by date");
                 Deadline deadline = new Deadline(dParts[0], dParts[1]);
                 return new AddCommand(deadline);
             case "event":
                 String[] eParts = arguments.split(" / ", 3);
-                if(eParts.length != 3) throw new DoraemonException("Event format: description / from start / to end");
+                if(eParts.length != 3) throw new DoraemonException("seedu.doraemon.Event format: description / from start / to end");
                 Event event = new Event(eParts[0], eParts[1], eParts[2]);
                 return new AddCommand(event);
             default:

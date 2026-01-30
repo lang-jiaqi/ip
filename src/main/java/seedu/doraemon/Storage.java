@@ -1,3 +1,5 @@
+package seedu.doraemon;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -5,10 +7,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.util.Scanner;
-
+/**
+ * Deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructs a Storage object with a specified file path.
+     * @param filePath The path of the file to store data.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -23,7 +31,7 @@ public class Storage {
             if (!file.getParentFile().exists()){
                 file.getParentFile().mkdir();
             }
-            FileWriter fw = new FileWriter("./data/Doraemon.txt");
+            FileWriter fw = new FileWriter("./data/seedu.doraemon.Doraemon.txt");
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.getTask(i);
                 fw.write(task.toFileFormat() + System.lineSeparator());
@@ -77,7 +85,7 @@ public class Storage {
                 boolean  isDone = parts[1].equals("1");
             }
         } catch (FileNotFoundException e) {
-            throw new DoraemonException("Doraemon file not found:" + filePath);
+            throw new DoraemonException("seedu.doraemon.Doraemon file not found:" + filePath);
         }
         return loadedTasks;
     }

@@ -1,3 +1,5 @@
+package seedu.doraemon;
+
 /**
  * Represents an event task with a start time and an end time.
  */

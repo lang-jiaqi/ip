@@ -1,3 +1,8 @@
+package seedu.doraemon;
+
+/**
+ * Represents the command that mark a task is done.
+ */
 public class MarkCommand extends Command {
     private int  taskIndex;
 

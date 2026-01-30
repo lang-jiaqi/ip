@@ -1,3 +1,8 @@
+package seedu.doraemon;
+
+/**
+ * Represents a command that delete some tasks.
+ */
 public class DeleteCommand extends Command {
     private int taskIndex;
 

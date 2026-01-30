@@ -1,11 +1,11 @@
     ____________________________________________________________
-    Hello! I'm Doraemon
+    Hello! I'm seedu.doraemon.Doraemon
     What can I do for you?
     ____________________________________________________________
     ____________________________________________________________
-    OOPS!!! Event cannot be empty!
+    OOPS!!! seedu.doraemon.Event cannot be empty!
     ____________________________________________________________
-    OOPS!!! Deadline can not be empty! please try again with task description and deadline~
+    OOPS!!! seedu.doraemon.Deadline can not be empty! please try again with task description and deadline~
     ____________________________________________________________
     OOPS!!! The description of a todo cannot be empty, please try again with task description~
     ____________________________________________________________

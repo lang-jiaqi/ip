@@ -1,3 +1,5 @@
+package seedu.doraemon;
+
 /**
  * Represents a todo task without any date or time.
  */

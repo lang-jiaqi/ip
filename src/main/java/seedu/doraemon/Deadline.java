@@ -1,3 +1,5 @@
+package seedu.doraemon;
+
 /**
  * Represents a task that must be completed before a specific deadline.
  */
