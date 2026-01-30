@@ -1,24 +1,25 @@
-public class MarkCommand extends Command {
-    private int  taskIndex;
+package doraemon;
 
-    public MarkCommand(int taskIndex) {
+public class UnmarkCommand extends Command {
+    private int taskIndex;
+
+    public UnmarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
         if (taskIndex < 1 || taskIndex > tasks.size()) {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
         Task task = tasks.getTask(taskIndex - 1);
-        task.markAsDone();
+        task.Unmark();
         storage.saveAll(tasks);
-        ui.markMessage(task);
+        ui.UnmarkMessage(task);
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
-
 }

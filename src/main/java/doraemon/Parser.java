@@ -1,3 +1,5 @@
+package doraemon;
+
 public class Parser {
     public static Command parse(String fullCommand) throws DoraemonException {
         String[] parts = fullCommand.trim().split(" ", 2);
@@ -36,12 +38,12 @@ public class Parser {
                 return new AddCommand(todo);
             case "deadline":
                 String[] dParts = arguments.split(" / ", 2);
-                if(dParts.length != 2) throw new DoraemonException("Deadline format: description / by date");
+                if(dParts.length != 2) throw new DoraemonException("seedu.doraemon.Deadline format: description / by date");
                 Deadline deadline = new Deadline(dParts[0], dParts[1]);
                 return new AddCommand(deadline);
             case "event":
                 String[] eParts = arguments.split(" / ", 3);
-                if(eParts.length != 3) throw new DoraemonException("Event format: description / from start / to end");
+                if(eParts.length != 3) throw new DoraemonException("seedu.doraemon.Event format: description / from start / to end");
                 Event event = new Event(eParts[0], eParts[1], eParts[2]);
                 return new AddCommand(event);
             default:

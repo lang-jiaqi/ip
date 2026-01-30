@@ -1,3 +1,5 @@
+package doraemon;
+
 /**
  * An abstract class af all command
  */

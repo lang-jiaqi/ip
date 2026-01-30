@@ -1,3 +1,5 @@
+package doraemon;
+
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -23,7 +25,7 @@ public class Storage {
             if (!file.getParentFile().exists()){
                 file.getParentFile().mkdir();
             }
-            FileWriter fw = new FileWriter("./data/Doraemon.txt");
+            FileWriter fw = new FileWriter(filePath);
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.getTask(i);
                 fw.write(task.toFileFormat() + System.lineSeparator());
@@ -77,7 +79,7 @@ public class Storage {
                 boolean  isDone = parts[1].equals("1");
             }
         } catch (FileNotFoundException e) {
-            throw new DoraemonException("Doraemon file not found:" + filePath);
+            throw new DoraemonException("seedu.doraemon.Ui.Doraemon file not found:" + filePath);
         }
         return loadedTasks;
     }

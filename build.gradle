@@ -16,7 +16,6 @@ dependencies {
 
 test {
     useJUnitPlatform()
-
     testLogging {
         events "passed", "skipped", "failed"
 
@@ -29,11 +28,12 @@ test {
 }
 
 application {
-    mainClass.set("seedu.duke.Duke")
+    mainClass.set("seedu.doraemon.Main")
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveFileName = 'doraemon.jar'
+    archiveBaseName = "doraemon"
     archiveClassifier = null
 }
 

@@ -1,3 +1,5 @@
+package doraemon;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -7,7 +9,9 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    public TaskList() {}
+    public TaskList() {
+        this.tasks = new ArrayList<>();
+    }
 
     public void add(Task task) {
         tasks.add(task);

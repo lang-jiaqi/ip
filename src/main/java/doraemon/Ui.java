@@ -1,3 +1,5 @@
+package doraemon;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -9,7 +11,7 @@ public class Ui {
 
     public void showWelcomeMessage() {
         showLine();
-        System.out.println("    Hello! I'm Doraemon\n    What can I do for you?");
+        System.out.println("    Hello! I'm seedu.doraemon.Ui.Doraemon\n    What can I do for you?");
         showLine();
     }
 
@@ -69,5 +71,46 @@ public class Ui {
         showLine();
         System.out.println("    " + error);
 
+    }
+
+    /**
+     * Represents the seedu.doraemon.Ui.Doraemon chatbot.
+     */
+    public static class Doraemon {
+        TaskList tasks;
+        Storage storage;
+        Ui ui;
+
+        public Doraemon(String filePath) {
+            ui = new Ui();
+            storage = new Storage(filePath);
+            try {
+                tasks = new TaskList(storage.loadFromFile());
+            } catch (DoraemonException e) {
+                ui.showLoadingError();
+                tasks = new TaskList();
+            }
+        }
+
+        public void run() {
+            ui.showWelcomeMessage();
+            boolean isExit = false;
+            while (!isExit) {
+                try {
+                    String fullCommand = ui.readCommand();
+                    Command c = Parser.parse(fullCommand);
+                    c.execute(tasks, ui, storage);
+                    isExit = c.isExit();
+                } catch (DoraemonException e) {
+                    ui.showError(e.getMessage());
+                }
+            }
+            ui.showByeMessage();
+        }
+
+
+        public static void main(String[] args) {
+            new Doraemon("./data/seedu.doraemon.Ui.Doraemon.txt").run();
+        }
     }
 }

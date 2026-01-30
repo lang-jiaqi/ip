@@ -1,3 +1,5 @@
+package doraemon;
+
 public class DeleteCommand extends Command {
     private int taskIndex;
 
@@ -6,7 +8,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
         if (taskIndex < 1 || taskIndex > tasks.size()) {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
