@@ -1,4 +1,5 @@
 package seedu.doraemon;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,7 +12,7 @@ public class Ui {
     /**
      * Prints a horizontal dividing line.
      */
-    public void showLine(){
+    public void showLine() {
         System.out.println("    ____________________________________________________________");
     }
 
@@ -23,6 +24,7 @@ public class Ui {
 
     /**
      * Reads the next line of input from the user.
+     *
      * @return The full string entered by the user.
      */
     public String readCommand() {
@@ -36,6 +38,7 @@ public class Ui {
 
     /**
      * Shows a list of tasks to the user.
+     *
      * @param tasks The TaskList containing tasks to be displayed.
      * @throws DoraemonException If there is an error retrieving tasks.
      */
@@ -45,6 +48,27 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             Task curr_task = tasks.getTask(i);
             System.out.println("    " + (i + 1) + ". " + curr_task.toString());
+        }
+        showLine();
+    }
+
+    public void showKeywordTasks(TaskList tasks, String keyword) throws DoraemonException {
+        TaskList keyword_tasks = new TaskList();
+        showLine();
+        System.out.println("    Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr_task = tasks.getTask(i);
+            String task_content = curr_task.getDescription();
+            String[] task_keywords = task_content.trim().split("\\s+");
+            for (int j = 0; j < task_keywords.length; j++) {
+                if (task_keywords[j].equals(keyword)) {
+                    keyword_tasks.add(curr_task);
+                }
+            }
+        }
+        for (int k = 0; k < keyword_tasks.size(); k++) {
+            Task curr_task = keyword_tasks.getTask(k);
+            System.out.println("    " + (k + 1) + ". " + curr_task.toString());
         }
         showLine();
     }
@@ -85,47 +109,5 @@ public class Ui {
     public void showError(String error) {
         showLine();
         System.out.println("    " + error);
-
-    }
-
-    /**
-     * Represents the seedu.doraemon.Ui.Doraemon chatbot.
-     */
-    public static class Doraemon {
-        TaskList tasks;
-        Storage storage;
-        Ui ui;
-
-        public Doraemon(String filePath) {
-            ui = new Ui();
-            storage = new Storage(filePath);
-            try {
-                tasks = new TaskList(storage.loadFromFile());
-            } catch (DoraemonException e) {
-                ui.showLoadingError();
-                tasks = new TaskList();
-            }
-        }
-
-        public void run() {
-            ui.showWelcomeMessage();
-            boolean isExit = false;
-            while (!isExit) {
-                try {
-                    String fullCommand = ui.readCommand();
-                    Command c = Parser.parse(fullCommand);
-                    c.execute(tasks, ui, storage);
-                    isExit = c.isExit();
-                } catch (DoraemonException e) {
-                    ui.showError(e.getMessage());
-                }
-            }
-            ui.showByeMessage();
-        }
-
-
-        public static void main(String[] args) {
-            new Doraemon("./data/seedu.doraemon.Ui.Doraemon.txt").run();
-        }
     }
 }

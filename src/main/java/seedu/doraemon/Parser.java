@@ -64,6 +64,10 @@ public class Parser {
                 LocalDate dateTo = LocalDate.parse(eParts[2]);
                 Event event = new Event(eParts[0], dateFrom, dateTo);
                 return new AddCommand(event);
+            case "find":
+                String keyword = arguments;
+                return new FindCommand(keyword);
+
             default:
                 throw new DoraemonException("Unknown command: " + commandWord);
 
