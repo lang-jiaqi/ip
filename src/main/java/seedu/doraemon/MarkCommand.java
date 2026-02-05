@@ -6,14 +6,14 @@ package seedu.doraemon;
  */
 
 public class MarkCommand extends Command {
-    private int  taskIndex;
+    private int taskIndex;
 
     public MarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
         if (taskIndex < 1 || taskIndex > tasks.size()) {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
@@ -24,7 +24,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 

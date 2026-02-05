@@ -80,7 +80,7 @@ public class Ui {
         showLine();
     }
 
-    public void UnmarkMessage(Task task) {
+    public void unmarkMessage(Task task) {
         showLine();
         System.out.println("    OK, I've marked this task as not done yet:");
         System.out.println("      " + task.toString());

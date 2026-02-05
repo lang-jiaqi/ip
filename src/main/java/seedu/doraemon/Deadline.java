@@ -9,6 +9,11 @@ import java.time.LocalDate;
 public class Deadline extends Task {
     protected String by;
 
+    /**
+     * A class that represents the deadline tasks
+     * @param description
+     * @param by
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by.toString();
@@ -22,7 +27,7 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
     @Override
-    public String getSatusIcon(){
+    public String getSatusIcon() {
         return (isDone ? "[X]" : "[ ]");
     }
     @Override
@@ -34,7 +39,7 @@ public class Deadline extends Task {
         isDone = true;
     }
     @Override
-    public void Unmark() {
+    public void unMark() {
         isDone = false;
     }
 

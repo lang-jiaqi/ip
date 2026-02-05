@@ -19,7 +19,7 @@ public class ToDo extends Task {
         return "[T]" + super.toString();
     }
     @Override
-    public String getSatusIcon(){
+    public String getSatusIcon() {
         return (isDone ? "[X]" : "[ ]");
     }
     @Override
@@ -31,7 +31,7 @@ public class ToDo extends Task {
         isDone = true;
     }
     @Override
-    public void Unmark() {
+    public void unMark() {
         isDone = false;
     }
 

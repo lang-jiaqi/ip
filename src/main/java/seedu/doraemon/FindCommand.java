@@ -1,5 +1,8 @@
 package seedu.doraemon;
 
+/**
+ * A class that represents a command that find tasks with a keyword
+ */
 public class FindCommand extends Command {
     private String keyword;
 

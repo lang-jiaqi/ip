@@ -6,13 +6,13 @@ package seedu.doraemon;
  * starts the main command-processing loop.
  */
 public class Doraemon {
-    TaskList tasks;
-    Storage storage;
-    Ui ui;
+    private TaskList tasks;
+    private Storage storage;
+    private Ui ui;
 
     /**
      * Initializes the Doraemon chatbot by loading task data from the specified file.
-     * * @param filePath The path of the file where task data is stored.
+     * @param filePath The path of the file where task data is stored.
      */
     public Doraemon(String filePath) {
         ui = new Ui();

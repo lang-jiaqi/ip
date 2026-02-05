@@ -1,16 +1,13 @@
 package seedu.doraemon;
-
-import java.io.FileNotFoundException;
 import java.io.File;
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
-
-import java.util.Scanner;
-import java.util.ArrayList;
-
+import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.
@@ -31,9 +28,9 @@ public class Storage {
      * @param tasks
      */
     public void saveAll(TaskList tasks) throws DoraemonException {
-        try{
+        try {
             File file = new File(filePath);
-            if (!file.getParentFile().exists()){
+            if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdir();
             }
             FileWriter fw = new FileWriter(filePath);
@@ -42,7 +39,7 @@ public class Storage {
                 fw.write(task.toFileFormat() + System.lineSeparator());
             }
             fw.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("storage failed " + e.getMessage());
         }
 
@@ -55,42 +52,43 @@ public class Storage {
     public ArrayList<Task> loadFromFile() throws DoraemonException {
         ArrayList<Task> loadedTasks = new ArrayList<>();
         File file = new File(filePath);
-        if(!file.exists()){
+        if (!file.exists()) {
             return loadedTasks;
         }
 
-        try{
+        try {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String line = sc.nextLine();
-                if(line.isEmpty()){
+                if (line.isEmpty()) {
                     continue;
                 }
                 String[] parts = line.split(" \\| ");
                 Task t = null;
-
                 switch (parts[0]) {
-                    case "T":
-                        t = new ToDo(parts[2]);
-                        break;
-                    case "D":
-                        LocalDate date = LocalDate.parse(parts[3]);
-                        t = new Deadline(parts[2], date);
-                        break;
-                    case "E":
-                        LocalDate startTime = LocalDate.parse(parts[3]);
-                        LocalDate endTime = LocalDate.parse(parts[4]);
-                        t = new Event(parts[2],startTime,endTime);
-                        break;
+                case"T":
+                    t = new ToDo(parts[2]);
+                    break;
+                case"D":
+                    LocalDate date = LocalDate.parse(parts[3]);
+                    t = new Deadline(parts[2], date);
+                    break;
+                case"E":
+                    LocalDate startTime = LocalDate.parse(parts[3]);
+                    LocalDate endTime = LocalDate.parse(parts[4]);
+                    t = new Event(parts[2], startTime, endTime);
+                    break;
+                default:
+                    break;
                 }
-                if (t!= null) {
-                    if(parts[1].equals("1")){
+                if (t != null) {
+                    if (parts[1].equals("1")) {
                         t.markAsDone();
                     }
                     loadedTasks.add(t);
                 }
                 String type = parts[0];
-                boolean  isDone = parts[1].equals("1");
+                boolean isDone = parts[1].equals("1");
             }
         } catch (FileNotFoundException e) {
             throw new DoraemonException("seedu.doraemon.Doraemon file not found:" + filePath);

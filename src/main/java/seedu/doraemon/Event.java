@@ -1,4 +1,3 @@
-
 package seedu.doraemon;
 
 import java.time.LocalDate;
@@ -11,6 +10,12 @@ public class Event extends Task {
     protected String from;
     protected String to;
 
+    /**
+     * A class that represents events with start and end time
+     * @param description
+     * @param startdate
+     * @param enddate
+     */
     public Event(String description, LocalDate startdate, LocalDate enddate) {
         super(description);
         this.from = startdate.toString();
@@ -25,7 +30,7 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (from: " + from + ", to: " + to + ")";
     }
     @Override
-    public String getSatusIcon(){
+    public String getSatusIcon() {
         return (isDone ? "[X]" : "[ ]");
     }
     @Override
@@ -37,7 +42,7 @@ public class Event extends Task {
         isDone = true;
     }
     @Override
-    public void Unmark() {
+    public void unMark() {
         isDone = false;
     }
 

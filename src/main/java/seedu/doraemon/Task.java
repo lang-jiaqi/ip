@@ -6,6 +6,10 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * A class represent a task
+     * @param description
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -33,7 +37,7 @@ public abstract class Task {
      * @return A string representation for display
      */
     public String toString() {
-        return  this.getSatusIcon() + description;
+        return this.getSatusIcon() + description;
     }
     /**
      * Returns whether this task is marked as done.
@@ -49,7 +53,7 @@ public abstract class Task {
      *
      * @return The display status icon of the task
      */
-    public String getSatusIcon(){
+    public String getSatusIcon() {
         return (isDone ? "[X]" : "[ ]");
     }
     /**
@@ -69,7 +73,7 @@ public abstract class Task {
     /**
      * Marks this task as not completed.
      */
-    public void Unmark() {
+    public void unMark() {
         isDone = false;
     }
 

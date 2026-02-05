@@ -18,9 +18,9 @@ public class UnmarkCommand extends Command {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
         Task task = tasks.getTask(taskIndex - 1);
-        task.Unmark();
+        task.unMark();
         storage.saveAll(tasks);
-        ui.UnmarkMessage(task);
+        ui.unmarkMessage(task);
     }
 
     @Override
