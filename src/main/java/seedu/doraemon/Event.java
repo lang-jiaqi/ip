@@ -13,8 +13,8 @@ public class Event extends Task {
 
     public Event(String description, LocalDate startdate, LocalDate enddate) {
         super(description);
-        this.from = from;
-        this.to = to;
+        this.from = startdate.toString();
+        this.to = enddate.toString();
     }
     @Override
     public String toFileFormat() {

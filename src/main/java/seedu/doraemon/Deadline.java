@@ -9,9 +9,9 @@ import java.time.LocalDate;
 public class Deadline extends Task {
     protected String by;
 
-    public Deadline(String description, LocalDate date) {
+    public Deadline(String description, LocalDate by) {
         super(description);
-        this.by = by;
+        this.by = by.toString();
     }
     @Override
     public String toFileFormat() {
