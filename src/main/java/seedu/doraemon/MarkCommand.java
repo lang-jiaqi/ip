@@ -13,14 +13,14 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
         if (taskIndex < 1 || taskIndex > tasks.size()) {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
         Task task = tasks.getTask(taskIndex - 1);
         task.markAsDone();
         storage.saveAll(tasks);
-        ui.markMessage(task);
+        return ui.markMessage(task);
     }
 
     @Override

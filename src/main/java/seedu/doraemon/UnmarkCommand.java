@@ -13,14 +13,14 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
         if (taskIndex < 1 || taskIndex > tasks.size()) {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
         Task task = tasks.getTask(taskIndex - 1);
         task.unMark();
         storage.saveAll(tasks);
-        ui.unmarkMessage(task);
+        return ui.unmarkMessage(task);
     }
 
     @Override

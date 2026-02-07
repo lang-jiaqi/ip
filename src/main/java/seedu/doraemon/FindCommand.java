@@ -11,8 +11,8 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
-        ui.showKeywordTasks(tasks, keyword);
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
+        return ui.getKeywordTasks(tasks, keyword);
 
     }
     @Override

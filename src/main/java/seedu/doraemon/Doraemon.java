@@ -24,34 +24,13 @@ public class Doraemon {
             tasks = new TaskList();
         }
     }
-    /**
-     * Runs the main program loop.
-     * It continuously reads user commands, parses them, and executes the actions
-     * until the "exit" command is received.
-     */
-    public void run() {
-        ui.showWelcomeMessage();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DoraemonException e) {
-                ui.showError(e.getMessage());
-            }
+    public String getResponse(String input) {
+        try {
+            String fullCommand = input;
+            Command c = Parser.parse(fullCommand);
+            return c.execute(tasks, ui, storage);
+        } catch (DoraemonException e) {
+            return ui.showError(e.getMessage());
         }
-        ui.showByeMessage();
-    }
-
-    /**
-     * Entry point of the Doraemon chatbot.
-     * Initializes the application and starts the interaction.
-     *
-     * @param args Command line arguments (not used).
-     */
-    public static void main(String[] args) {
-        new Doraemon("./data/seedu.doraemon.Doraemon.txt").run();
     }
 }

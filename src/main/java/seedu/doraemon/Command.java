@@ -12,7 +12,7 @@ public abstract class Command {
      * @param storage
      * @throws DoraemonException
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException;
 
     /**
      * checks whether it is an exit command.

@@ -6,8 +6,8 @@ package seedu.doraemon;
  */
 public class ExitCommand extends Command {
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        return;
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
+        return null;
     }
     @Override
     public boolean isExit() {
