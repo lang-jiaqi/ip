@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private Doraemon doraemon = new Doraemon("./data/seedu.doraemon.Doraemon.txt");
+    final Doraemon doraemon = new Doraemon("./data/seedu.doraemon.Doraemon.txt");
 
     @Override
     public void start(Stage stage) {
@@ -26,7 +26,7 @@ public class Main extends Application {
             fxmlLoader.<MainWindow>getController().setDoraemon(doraemon);
             stage.show();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.getStackTrace();
         }
     }
 }

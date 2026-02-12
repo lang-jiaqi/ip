@@ -30,12 +30,17 @@ public class Storage {
     public void saveAll(TaskList tasks) throws DoraemonException {
         try {
             File file = new File(filePath);
+            assert file != null : "file should not be null";
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdir();
             }
             FileWriter fw = new FileWriter(filePath);
+            if (!file.canWrite()) {
+                throw new IOException("File is not writable: " + filePath);
+            }
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.getTask(i);
+                assert task != null : "task is null";
                 fw.write(task.toFileFormat() + System.lineSeparator());
             }
             fw.close();
@@ -55,7 +60,6 @@ public class Storage {
         if (!file.exists()) {
             return new ArrayList<>();
         }
-
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
@@ -64,16 +68,20 @@ public class Storage {
                     continue;
                 }
                 String[] parts = line.split(" \\| ");
+                assert parts.length >= 3 : "line has too few parts: " + line;
                 Task t = null;
                 switch (parts[0]) {
                 case"T":
+                    assert parts.length == 3 : "ToDo line must have 3 parts: " + line;
                     t = new ToDo(parts[2]);
                     break;
                 case"D":
+                    assert parts.length == 4 : "Deadline line must have 4 parts: " + line;
                     LocalDate date = LocalDate.parse(parts[3]);
                     t = new Deadline(parts[2], date);
                     break;
                 case"E":
+                    assert parts.length == 5 : "Event line must have 5 parts: " + line;
                     LocalDate startTime = LocalDate.parse(parts[3]);
                     LocalDate endTime = LocalDate.parse(parts[4]);
                     t = new Event(parts[2], startTime, endTime);

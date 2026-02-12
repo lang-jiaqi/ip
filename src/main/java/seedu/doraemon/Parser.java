@@ -18,6 +18,7 @@ public class Parser {
      */
 
     public static Command parse(String fullCommand) throws DoraemonException {
+        assert fullCommand != null : "fullCommand should not be null";
         String[] parts = fullCommand.trim().split(" ", 2);
         String commandWord = parts[0];
         String arguments = parts.length > 1 ? parts[1] : "";
@@ -79,9 +80,5 @@ public class Parser {
             throw new DoraemonException("Unknown command: " + commandWord);
 
         }
-
-
-
-
     }
 }
