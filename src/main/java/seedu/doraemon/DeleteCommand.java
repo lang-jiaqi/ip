@@ -17,6 +17,7 @@ public class DeleteCommand extends Command {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
         Task removedTask = tasks.delete(taskIndex);
+        assert removedTask != null : "Delete task should not be null";
         storage.saveAll(tasks);
         return ui.addTaskMessage(removedTask, tasks.size());
     }

@@ -18,6 +18,7 @@ public class MarkCommand extends Command {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
         Task task = tasks.getTask(taskIndex - 1);
+        assert task != null : "task is null";
         task.markAsDone();
         storage.saveAll(tasks);
         return ui.markMessage(task);
