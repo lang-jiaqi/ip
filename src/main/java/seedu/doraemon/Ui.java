@@ -67,18 +67,20 @@ public class Ui {
     }
 
     public String addTaskMessage(Task task, int taskCount) {
-        return "Got it. I've added this task:" + task.toString() + "\n" + "Now you have " + taskCount + " tasks in your list.";
+        return "Got it. I've added this task:"
+                + task.toString() + "\n" + "Now you have " + taskCount + " tasks in your list.";
     }
 
     public String deleteTaskMessage(Task task, int taskCount) {
-        return "Noted. I've removed this task:" + task.toString() + "\n" + "Now you have " + taskCount + " tasks in your list.";
+        return "Noted. I've removed this task:"
+                + task.toString() + "\n" + "Now you have " + taskCount + " tasks in your list.";
     }
 
-    public String showLoadingError() {
-        return "Oops, there is a loading error. Please try again.";
+    public void showLoadingError() {
+        System.out.println("Oops, there is a loading error. Please try again.");
     }
 
-    public String showError(String error) {
-        return error;
+    public void showError(String error) {
+        System.out.println(error);
     }
 }

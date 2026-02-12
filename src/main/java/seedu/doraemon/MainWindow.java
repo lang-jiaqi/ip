@@ -22,7 +22,7 @@ public class MainWindow extends AnchorPane {
     private Button sendButton;
 
     private Doraemon doraemon;
-
+    private Ui ui;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/User.png"));
     private Image doraemonImage = new Image(this.getClass().getResourceAsStream("/images/Doraemon.png"));
 

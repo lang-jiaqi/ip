@@ -7,8 +7,8 @@ package seedu.doraemon;
  */
 public class Doraemon {
     private TaskList tasks;
-    private Storage storage;
-    private Ui ui;
+    private final Storage storage;
+    private final Ui ui;
 
     /**
      * Initializes the Doraemon chatbot by loading task data from the specified file.
@@ -24,13 +24,13 @@ public class Doraemon {
             tasks = new TaskList();
         }
     }
-    public String getResponse(String input) {
+    public String getResponse(String userInput) {
         try {
-            String fullCommand = input;
-            Command c = Parser.parse(fullCommand);
-            return c.execute(tasks, ui, storage);
+            Command command = Parser.parse(userInput);
+            String response = command.execute(tasks, ui, storage);
+            return response;
         } catch (DoraemonException e) {
-            return ui.showError(e.getMessage());
+            return e.getMessage();
         }
     }
 }
