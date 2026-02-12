@@ -34,7 +34,7 @@ public class TaskList {
      * @return The deleted task.
      * @throws DoraemonException If the index is out of bounds.
      */
-    public Task delete(int task_number) throws DoraemonException {
+    public Task delete(int task_number) {
         return tasks.remove(task_number - 1 );
     }
 
@@ -43,7 +43,7 @@ public class TaskList {
      * @param task_number The 0-based index of the task.
      * @return The task at the specified index.
      */
-    public Task getTask(int task_number) throws DoraemonException {
+    public Task getTask(int task_number) {
         return tasks.get(task_number);
     }
 

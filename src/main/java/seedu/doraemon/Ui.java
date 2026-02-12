@@ -27,6 +27,7 @@ public class Ui {
         sb.append("Here are the tasks in your list:\n");
         for (int i = 0; i < tasks.size(); i++) {
             Task curr_task = tasks.getTask(i);
+            assert curr_task != null : "task is null";
             sb.append((i + 1)).append(". ").append(curr_task.toString()).append("\n");
         }
 
@@ -38,7 +39,9 @@ public class Ui {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
             Task currTask = tasks.getTask(i);
+            assert currTask != null : "task is null";
             String taskContent = currTask.getDescription();
+            assert taskContent != null : "task description is null";
             String[] taskKeywords = taskContent.trim().split("\\s+");
             for (String taskKeyword : taskKeywords) {
                 if (taskKeyword.equals(keyword)) {
@@ -53,6 +56,7 @@ public class Ui {
         sb.append("Here are the matching tasks in your list:\n");
         for (int k = 0; k < keywordTasks.size(); k++) {
             Task currTask = keywordTasks.getTask(k);
+            assert currTask != null : "task is null";
             sb.append((k + 1)).append(". ").append(currTask.toString()).append("\n");
         }
         return sb.toString();
