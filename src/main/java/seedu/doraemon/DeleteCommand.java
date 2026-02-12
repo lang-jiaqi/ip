@@ -13,7 +13,8 @@ public class DeleteCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
-        if (taskIndex < 1 || taskIndex > tasks.size()) {
+        boolean taskIndaxInvalid = taskIndex < 1 || taskIndex > tasks.size();
+        if (taskIndaxInvalid) {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
         Task removedTask = tasks.delete(taskIndex);

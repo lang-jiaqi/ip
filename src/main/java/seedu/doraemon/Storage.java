@@ -13,7 +13,7 @@ import java.util.Scanner;
  * Deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     /**
      * Constructs a Storage object with a specified file path.
@@ -58,7 +58,7 @@ public class Storage {
         ArrayList<Task> loadedTasks = new ArrayList<>();
         File file = new File(filePath);
         if (!file.exists()) {
-            return loadedTasks;
+            return new ArrayList<>();
         }
         try {
             Scanner sc = new Scanner(file);
@@ -90,13 +90,11 @@ public class Storage {
                     break;
                 }
                 if (t != null) {
+                    loadedTasks.add(t);
                     if (parts[1].equals("1")) {
                         t.markAsDone();
                     }
-                    loadedTasks.add(t);
                 }
-                String type = parts[0];
-                boolean isDone = parts[1].equals("1");
             }
         } catch (FileNotFoundException e) {
             throw new DoraemonException("seedu.doraemon.Doraemon file not found:" + filePath);

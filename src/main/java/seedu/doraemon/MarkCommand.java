@@ -14,7 +14,8 @@ public class MarkCommand extends Command {
 
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DoraemonException {
-        if (taskIndex < 1 || taskIndex > tasks.size()) {
+        boolean taskIndexInvalid = taskIndex < 1 || taskIndex > tasks.size();
+        if (taskIndexInvalid) {
             throw new DoraemonException("Invalid task index:" + taskIndex);
         }
         Task task = tasks.getTask(taskIndex - 1);

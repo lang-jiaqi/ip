@@ -16,6 +16,7 @@ public class Parser {
      * @return A Command object that represents the action to be taken.
      * @throws DoraemonException If the command word is unknown or arguments are invalid.
      */
+
     public static Command parse(String fullCommand) throws DoraemonException {
         assert fullCommand != null : "fullCommand should not be null";
         String[] parts = fullCommand.trim().split(" ", 2);
