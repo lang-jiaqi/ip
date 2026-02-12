@@ -50,31 +50,34 @@ public class Parser {
                 throw new DoraemonException("Invalid index:" + arguments);
             }
         case"todo":
+            String[] tParts = arguments.split("/", 2);
             if (arguments.isEmpty()) {
                 throw new DoraemonException("The description of a todo cannot be empty");
             }
-            ToDo todo = new ToDo(arguments);
+            ToDo todo = new ToDo(tParts[0], Integer.parseInt(tParts[1]));
             return new AddCommand(todo);
         case"deadline":
-            String[] dParts = arguments.split(" / ", 2);
+            String[] dParts = arguments.split("/", 3);
             if (dParts.length != 2) {
                 throw new DoraemonException("seedu.doraemon.Deadline format: description / by date");
             }
             LocalDate date = LocalDate.parse(dParts[1]);
-            Deadline deadline = new Deadline(dParts[0], date);
+            Deadline deadline = new Deadline(dParts[0], Integer.parseInt(dParts[2]), date);
             return new AddCommand(deadline);
         case"event":
-            String[] eParts = arguments.split(" / ", 3);
+            String[] eParts = arguments.split("/", 4);
             if (eParts.length != 3) {
                 throw new DoraemonException("seedu.doraemon.Event format: description / from start / to end");
             }
             LocalDate dateFrom = LocalDate.parse(eParts[1]);
             LocalDate dateTo = LocalDate.parse(eParts[2]);
-            Event event = new Event(eParts[0], dateFrom, dateTo);
+            Event event = new Event(eParts[0], Integer.parseInt(eParts[3]), dateFrom, dateTo);
             return new AddCommand(event);
         case"find":
             String keyword = arguments;
             return new FindCommand(keyword);
+        case"priority":
+            return new PriorityListCommand( Integer.parseInt(arguments));
 
         default:
             throw new DoraemonException("Unknown command: " + commandWord);

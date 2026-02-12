@@ -3,6 +3,7 @@ package seedu.doraemon;
  * Represents a generic task with a description and completion status.
  */
 public abstract class Task {
+    protected final int priority;
     protected String description;
     protected boolean isDone;
 
@@ -10,9 +11,10 @@ public abstract class Task {
      * A class represent a task
      * @param description
      */
-    public Task(String description) {
+    public Task(String description, int priority) {
         this.description = description;
         this.isDone = false;
+        this.priority = priority;
     }
 
     /**
@@ -75,6 +77,10 @@ public abstract class Task {
      */
     public void unMark() {
         isDone = false;
+    }
+
+    public int getPriority() {
+        return priority;
     }
 
 }

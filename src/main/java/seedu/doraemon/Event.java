@@ -13,21 +13,22 @@ public class Event extends Task {
     /**
      * A class that represents events with start and end time
      * @param description
+     * @param priority
      * @param startdate
      * @param enddate
      */
-    public Event(String description, LocalDate startdate, LocalDate enddate) {
-        super(description);
+    public Event(String description, int priority, LocalDate startdate, LocalDate enddate) {
+        super(description, priority);
         this.from = startdate.toString();
         this.to = enddate.toString();
     }
     @Override
     public String toFileFormat() {
-        return "E | " + getSatusIconForFuile() + " | " + description + " | " + from + " | " + to;
+        return "E | " + getSatusIconForFuile() + " | " + description + " | " + from + " | " + to + " | " + priority;
     }
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from + ", to: " + to + ")";
+        return "[E]" + super.toString() + " (from: " + from + ", to: " + to + ")" + "*" + priority + "*";
     }
     @Override
     public String getSatusIcon() {
@@ -45,5 +46,8 @@ public class Event extends Task {
     public void unMark() {
         isDone = false;
     }
-
+    @Override
+    public int getPriority() {
+        return priority;
+    }
 }

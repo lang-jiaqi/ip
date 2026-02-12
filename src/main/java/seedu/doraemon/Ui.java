@@ -1,5 +1,6 @@
 
 package seedu.doraemon;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -7,11 +8,9 @@ import java.util.Scanner;
  * Deals with interactions with the user, such as printing messages and reading input.
  */
 public class Ui {
-    private Scanner scanner = new Scanner(System.in);
     public String getWelcomeMessage() {
         return "Hello! I'm Doraemon\nWhat can I do for you?";
     }
-
     public String getByeMessage() {
         return "Bye. Hope to see you again soon!";
     }
@@ -33,7 +32,42 @@ public class Ui {
 
         return sb.toString();
     }
-
+    public String getFirstPriorityTasks(TaskList tasks) throws DoraemonException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks with *1* Priority in your list:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr_task = tasks.getTask(i);
+            assert curr_task != null : "task is null";
+            if (curr_task.getPriority() == 1) {
+                sb.append(curr_task.toString()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+    public String getMediumPriorityTasks(TaskList tasks) throws DoraemonException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks with *2* Priority in your list:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr_task = tasks.getTask(i);
+            assert curr_task != null : "task is null";
+            if (curr_task.getPriority() == 2) {
+                sb.append(curr_task.toString()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+    public String getLowPriorityTasks(TaskList tasks) throws DoraemonException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the tasks with *3* Priority in your list:\n");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr_task = tasks.getTask(i);
+            assert curr_task != null : "task is null";
+            if (curr_task.getPriority() == 3) {
+                sb.append(curr_task.toString()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
     public String getKeywordTasks(TaskList tasks, String keyword) throws DoraemonException {
         TaskList keywordTasks = new TaskList();
         StringBuilder sb = new StringBuilder();
@@ -61,30 +95,25 @@ public class Ui {
         }
         return sb.toString();
     }
-
     public String markMessage(Task task) {
         return "Nice! I've marked this task as done:\n" + "      " + task.toString();
     }
-
     public String unmarkMessage(Task task) {
         return "Nice! I've unmarked this task as undo:\n" + "      " + task.toString();
     }
-
     public String addTaskMessage(Task task, int taskCount) {
         return "Got it. I've added this task:"
                 + task.toString() + "\n" + "Now you have " + taskCount + " tasks in your list.";
     }
-
     public String deleteTaskMessage(Task task, int taskCount) {
         return "Noted. I've removed this task:"
                 + task.toString() + "\n" + "Now you have " + taskCount + " tasks in your list.";
     }
-
     public void showLoadingError() {
         System.out.println("Oops, there is a loading error. Please try again.");
     }
-
     public void showError(String error) {
         System.out.println(error);
     }
-}
+  }
+

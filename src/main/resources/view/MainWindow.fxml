@@ -14,6 +14,6 @@
             <content>
                 <VBox fx:id="dialogContainer" prefHeight="552.0" prefWidth="388.0" />
             </content>
-        </ScrollPane>git branch --merged main
+        </ScrollPane>
     </children>
 </AnchorPane>

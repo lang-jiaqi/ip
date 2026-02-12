@@ -68,23 +68,23 @@ public class Storage {
                     continue;
                 }
                 String[] parts = line.split(" \\| ");
-                assert parts.length >= 3 : "line has too few parts: " + line;
+                assert parts.length >= 4 : "line has too few parts: " + line;
                 Task t = null;
                 switch (parts[0]) {
                 case"T":
-                    assert parts.length == 3 : "ToDo line must have 3 parts: " + line;
-                    t = new ToDo(parts[2]);
+                    assert parts.length == 4 : "ToDo line must have 3 parts: " + line;
+                    t = new ToDo(parts[2], Integer.parseInt(parts[3]));
                     break;
                 case"D":
-                    assert parts.length == 4 : "Deadline line must have 4 parts: " + line;
+                    assert parts.length == 5 : "Deadline line must have 4 parts: " + line;
                     LocalDate date = LocalDate.parse(parts[3]);
-                    t = new Deadline(parts[2], date);
+                    t = new Deadline(parts[2], Integer.parseInt(parts[4]), date);
                     break;
                 case"E":
-                    assert parts.length == 5 : "Event line must have 5 parts: " + line;
+                    assert parts.length == 6 : "Event line must have 5 parts: " + line;
                     LocalDate startTime = LocalDate.parse(parts[3]);
                     LocalDate endTime = LocalDate.parse(parts[4]);
-                    t = new Event(parts[2], startTime, endTime);
+                    t = new Event(parts[2], Integer.parseInt(parts[5]), startTime, endTime);
                     break;
                 default:
                     break;

@@ -7,16 +7,16 @@ package seedu.doraemon;
 
 public class ToDo extends Task {
 
-    public ToDo(String description) {
-        super(description);
+    public ToDo(String description, int priority) {
+        super(description, priority);
     }
     @Override
     public String toFileFormat() {
-        return "T | " + getSatusIconForFuile() + " | " + description;
+        return "T | " + getSatusIconForFuile() + " | " + description + " | " + priority;
     }
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[T]" + super.toString() + "*" + priority + "*";
     }
     @Override
     public String getSatusIcon() {
@@ -33,6 +33,10 @@ public class ToDo extends Task {
     @Override
     public void unMark() {
         isDone = false;
+    }
+    @Override
+    public int getPriority() {
+        return priority;
     }
 
 }
