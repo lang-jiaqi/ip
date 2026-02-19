@@ -33,4 +33,13 @@ public class Doraemon {
             return e.getMessage();
         }
     }
+    
+    // This segment is modified/written by Cursor
+    /**
+     * Returns the Ui instance for accessing UI messages.
+     * @return The Ui instance
+     */
+    public Ui getUi() {
+        return ui;
+    }
 }

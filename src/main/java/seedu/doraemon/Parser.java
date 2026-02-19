@@ -20,7 +20,9 @@ public class Parser {
     public static Command parse(String fullCommand) throws DoraemonException {
         assert fullCommand != null : "fullCommand should not be null";
         String[] parts = fullCommand.trim().split(" ", 2);
-        String commandWord = parts[0];
+        // This segment is modified/written by Cursor
+        // Convert to lowercase for case-insensitive command matching
+        String commandWord = parts[0].toLowerCase();
         String arguments = parts.length > 1 ? parts[1] : "";
 
         switch (commandWord) {

@@ -44,8 +44,18 @@ public class MainWindow extends AnchorPane {
     }
 
     /** Injects the Doraemon instance */
+    // This segment is modified/written by Cursor
     public void setDoraemon(Doraemon d) {
         doraemon = d;
+        // Display welcome message when app opens
+        String welcomeMessage = d.getUi().getWelcomeMessage();
+        dialogContainer.getChildren().add(
+                DialogBox.getDukeDialog(welcomeMessage, doraemonImage)
+        );
+        // Scroll to bottom to show welcome message
+        Platform.runLater(() -> {
+            scrollPane.setVvalue(1.0);
+        });
     }
 
     /**

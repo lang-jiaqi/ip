@@ -8,12 +8,14 @@ import java.util.Scanner;
  */
 public class Ui {
     private Scanner scanner = new Scanner(System.in);
+    // This segment is modified/written by Cursor
     public String getWelcomeMessage() {
-        return "Hello! I'm Doraemon\nWhat can I do for you?";
+        return "Hi I am Doraemon, your personal schedule assistant! Welcome to tell me anything!";
     }
 
+    // This segment is modified/written by Cursor
     public String getByeMessage() {
-        return "Bye. Hope to see you again soon!";
+        return "BYE! I have remembered all schedule till now. See u next time!";
     }
 
     /**
