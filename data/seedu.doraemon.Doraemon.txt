@@ -1,4 +1,4 @@
-T | 1 | read book
+T | 0 | read book
 T | 0 | eat food
-D | 0 | assignment1 | 2026-02-05
+D | 1 | assignment1 | 2026-02-05
 E | 0 | lab2 | 2026-02-19 | 2026-03-01

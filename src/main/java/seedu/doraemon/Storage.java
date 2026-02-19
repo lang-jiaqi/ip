@@ -61,11 +61,12 @@ public class Storage {
      * @throws DoraemonException If an error occurs while loading
      */
     public ArrayList<Task> loadFromFile() throws DoraemonException {
-        ArrayList<Task> loadedTasks = new ArrayList<>();
         File file = new File(filePath);
         if (!file.exists()) {
             return new ArrayList<>();
         }
+        
+        ArrayList<Task> loadedTasks = new ArrayList<>();
         try {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
@@ -73,38 +74,87 @@ public class Storage {
                 if (line.isEmpty()) {
                     continue;
                 }
-                String[] parts = line.split(" \\| ");
-                assert parts.length >= 3 : "line has too few parts: " + line;
-                Task t = null;
-                switch (parts[0]) {
-                case"T":
-                    assert parts.length == 3 : "ToDo line must have 3 parts: " + line;
-                    t = new ToDo(parts[2]);
-                    break;
-                case"D":
-                    assert parts.length == 4 : "Deadline line must have 4 parts: " + line;
-                    LocalDate date = LocalDate.parse(parts[3]);
-                    t = new Deadline(parts[2], date);
-                    break;
-                case"E":
-                    assert parts.length == 5 : "Event line must have 5 parts: " + line;
-                    LocalDate startTime = LocalDate.parse(parts[3]);
-                    LocalDate endTime = LocalDate.parse(parts[4]);
-                    t = new Event(parts[2], startTime, endTime);
-                    break;
-                default:
-                    break;
-                }
-                if (t != null) {
-                    loadedTasks.add(t);
-                    if (parts[1].equals("1")) {
-                        t.markAsDone();
-                    }
+                Task task = parseTaskFromLine(line);
+                if (task != null) {
+                    loadedTasks.add(task);
                 }
             }
         } catch (FileNotFoundException e) {
             throw new DoraemonException("seedu.doraemon.Doraemon file not found:" + filePath);
         }
         return loadedTasks;
+    }
+
+    /**
+     * Parses a single line from the file into a Task object.
+     *
+     * @param line The line to parse, formatted as "TYPE | STATUS | DESCRIPTION | ..."
+     * @return The parsed Task object, or null if the line format is invalid
+     */
+    private Task parseTaskFromLine(String line) {
+        String[] parts = line.split(" \\| ");
+        assert parts.length >= 3 : "line has too few parts: " + line;
+        
+        Task task = createTaskFromParts(parts);
+        if (task != null && parts[1].equals("1")) {
+            task.markAsDone();
+        }
+        return task;
+    }
+
+    /**
+     * Creates a Task object from parsed parts of a file line.
+     *
+     * @param parts The array of parts from splitting the line by " | "
+     * @return The created Task object, or null if the task type is unknown
+     */
+    private Task createTaskFromParts(String[] parts) {
+        String taskType = parts[0];
+        switch (taskType) {
+        case "T":
+            return createTodoTask(parts);
+        case "D":
+            return createDeadlineTask(parts);
+        case "E":
+            return createEventTask(parts);
+        default:
+            return null;
+        }
+    }
+
+    /**
+     * Creates a ToDo task from parsed parts.
+     *
+     * @param parts The array containing task type, status, and description
+     * @return The created ToDo task
+     */
+    private Task createTodoTask(String[] parts) {
+        assert parts.length == 3 : "ToDo line must have 3 parts";
+        return new ToDo(parts[2]);
+    }
+
+    /**
+     * Creates a Deadline task from parsed parts.
+     *
+     * @param parts The array containing task type, status, description, and due date
+     * @return The created Deadline task
+     */
+    private Task createDeadlineTask(String[] parts) {
+        assert parts.length == 4 : "Deadline line must have 4 parts";
+        LocalDate date = LocalDate.parse(parts[3]);
+        return new Deadline(parts[2], date);
+    }
+
+    /**
+     * Creates an Event task from parsed parts.
+     *
+     * @param parts The array containing task type, status, description, start date, and end date
+     * @return The created Event task
+     */
+    private Task createEventTask(String[] parts) {
+        assert parts.length == 5 : "Event line must have 5 parts";
+        LocalDate startTime = LocalDate.parse(parts[3]);
+        LocalDate endTime = LocalDate.parse(parts[4]);
+        return new Event(parts[2], startTime, endTime);
     }
 }

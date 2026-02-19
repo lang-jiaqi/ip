@@ -52,7 +52,7 @@ public class DialogBox extends HBox {
     /**
      * Creates a dialog box for user messages.
      * User messages are right-aligned with the avatar on the right side.
-     * 
+     *
      * @param text The message text to display
      * @param img The user's avatar image
      * @return A DialogBox configured for user messages
@@ -73,7 +73,7 @@ public class DialogBox extends HBox {
      * Creates a dialog box for Doraemon's (bot) messages.
      * Bot messages are left-aligned with the avatar on the left side.
      * Applies the "reply-label" CSS class for distinct styling.
-     * 
+     *
      * @param text The message text to display
      * @param img Doraemon's avatar image
      * @return A DialogBox configured for bot messages
