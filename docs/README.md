@@ -1,30 +1,60 @@
-# seedu.doraemon.Doraemon User Guide
+# 🤖 Doraemon User Guide
 
-// Update the title above to match the actual product name
+Welcome to Doraemon! Your friendly personal schedule assistant! 🎯
 
-// Product screenshot goes here
+## 🚀 Quick Start
 
-// Product intro goes here
+1. Run the application (use `./gradlew run` or run `Main.java`)
+2. Type commands in the text field at the bottom
+3. Press Enter or click "Send" ✨
 
-## Adding deadlines
+## 💬 Commands
 
-// Describe the action and its outcome.
+### View Tasks
+- **`list`** 📋 - Show all your tasks
 
-// Give examples of usage
+### Add Tasks
+- **`todo <description>`** ➕ - Add a todo task
+  - Example: `todo buy groceries`
+  
+- **`deadline <description> / <date>`** ⏰ - Add a deadline (date: YYYY-MM-DD)
+  - Example: `deadline finish project / 2026-02-20`
+  
+- **`event <description> / <start> / <end>`** 📅 - Add an event (dates: YYYY-MM-DD)
+  - Example: `event conference / 2026-03-01 / 2026-03-03`
 
-Example: `keyword (optional arguments)`
+### Manage Tasks
+- **`mark <index>`** ✅ - Mark task as done
+  - Example: `mark 1`
+  
+- **`unmark <index>`** 🔄 - Mark task as not done
+  - Example: `unmark 1`
+  
+- **`delete <index>`** 🗑️ - Delete a task
+  - Example: `delete 2`
 
-// A description of the expected outcome goes here
+### Search
+- **`find <keyword>`** 🔍 - Find tasks with keyword
+  - Example: `find book`
 
-```
-expected output
-```
+### Exit
+- **`bye`** 👋 - Exit the app
 
-## Feature ABC
+## 📝 Task Types
 
-// Feature details
+- **[T]** 📝 - Todo (no date)
+- **[D]** ⏰ - Deadline (has due date)
+- **[E]** 📅 - Event (has start and end dates)
 
+**Status:**
+- **[ ]** - Not done
+- **[X]** - Done ✅
 
-## Feature XYZ
+## 💡 Quick Tips
 
-// Feature details
+- Use `list` to see all tasks and their numbers
+- Date format: YYYY-MM-DD (e.g., 2026-02-19)
+- Commands work in any case (LIST, list, List)
+- Your tasks are auto-saved! 💾
+
+Need help? Just ask Doraemon! 🤖✨
