@@ -7,6 +7,11 @@ package seedu.doraemon;
 public class DeleteCommand extends Command {
     private int taskIndex;
 
+    /**
+     * Constructs a DeleteCommand with the specified task index.
+     *
+     * @param taskIndex The 1-based index of the task to be deleted
+     */
     public DeleteCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }

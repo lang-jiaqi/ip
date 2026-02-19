@@ -11,10 +11,11 @@ public class Event extends Task {
     protected String to;
 
     /**
-     * A class that represents events with start and end time
-     * @param description
-     * @param startdate
-     * @param enddate
+     * Constructs a new Event task with the given description, start date, and end date.
+     *
+     * @param description The description of the event task
+     * @param startdate The start date of the event
+     * @param enddate The end date of the event
      */
     public Event(String description, LocalDate startdate, LocalDate enddate) {
         super(description);

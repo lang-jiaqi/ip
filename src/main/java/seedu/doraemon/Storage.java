@@ -24,8 +24,11 @@ public class Storage {
     }
 
     /**
-     * Save the tasks to the disk, if the folder doesn't exist,create a folder.
-     * @param tasks
+     * Saves all tasks to the disk.
+     * Creates the parent directory if it doesn't exist.
+     *
+     * @param tasks The TaskList containing all tasks to be saved
+     * @throws DoraemonException If an error occurs while saving
      */
     public void saveAll(TaskList tasks) throws DoraemonException {
         try {
@@ -51,8 +54,11 @@ public class Storage {
     }
 
     /**
-     * load the tasks from the disk, if the file doesn't exist, just return.
-     * @return an arraylist of asks
+     * Loads tasks from the disk file.
+     * Returns an empty list if the file doesn't exist.
+     *
+     * @return An ArrayList of tasks loaded from the file
+     * @throws DoraemonException If an error occurs while loading
      */
     public ArrayList<Task> loadFromFile() throws DoraemonException {
         ArrayList<Task> loadedTasks = new ArrayList<>();

@@ -7,6 +7,11 @@ package seedu.doraemon;
 
 public class ToDo extends Task {
 
+    /**
+     * Constructs a new ToDo task with the given description.
+     *
+     * @param description The description of the todo task
+     */
     public ToDo(String description) {
         super(description);
     }

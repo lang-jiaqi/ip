@@ -7,8 +7,10 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * A class represent a task
-     * @param description
+     * Constructs a new Task with the given description.
+     * The task is initially marked as not done.
+     *
+     * @param description The description of the task
      */
     public Task(String description) {
         this.description = description;

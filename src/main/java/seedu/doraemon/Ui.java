@@ -8,12 +8,21 @@ import java.util.Scanner;
  */
 public class Ui {
     private Scanner scanner = new Scanner(System.in);
-    // This segment is modified/written by Cursor
+    
+    /**
+     * Returns the welcome message displayed when the application starts.
+     *
+     * @return The welcome message string
+     */
     public String getWelcomeMessage() {
         return "Hi I am Doraemon, your personal schedule assistant! Welcome to tell me anything!";
     }
 
-    // This segment is modified/written by Cursor
+    /**
+     * Returns the goodbye message displayed when the user exits the application.
+     *
+     * @return The goodbye message string
+     */
     public String getByeMessage() {
         return "BYE! I have remembered all schedule till now. See u next time!";
     }
@@ -36,6 +45,14 @@ public class Ui {
         return sb.toString();
     }
 
+    /**
+     * Searches for tasks containing the specified keyword and returns a formatted string.
+     *
+     * @param tasks The TaskList to search through
+     * @param keyword The keyword to search for in task descriptions
+     * @return A formatted string containing matching tasks, or an error message if none found
+     * @throws DoraemonException If there is an error retrieving tasks
+     */
     public String getKeywordTasks(TaskList tasks, String keyword) throws DoraemonException {
         TaskList keywordTasks = new TaskList();
         StringBuilder sb = new StringBuilder();
@@ -64,28 +81,62 @@ public class Ui {
         return sb.toString();
     }
 
+    /**
+     * Returns a message indicating that a task has been marked as done.
+     *
+     * @param task The task that was marked as done
+     * @return A formatted message string
+     */
     public String markMessage(Task task) {
         return "Nice! I've marked this task as done:\n" + "      " + task.toString();
     }
 
+    /**
+     * Returns a message indicating that a task has been unmarked.
+     *
+     * @param task The task that was unmarked
+     * @return A formatted message string
+     */
     public String unmarkMessage(Task task) {
         return "Nice! I've unmarked this task as undo:\n" + "      " + task.toString();
     }
 
+    /**
+     * Returns a message indicating that a task has been added to the list.
+     *
+     * @param task The task that was added
+     * @param taskCount The total number of tasks in the list after adding
+     * @return A formatted message string
+     */
     public String addTaskMessage(Task task, int taskCount) {
         return "Got it. I've added this task:"
                 + task.toString() + "\n" + "Now you have " + taskCount + " tasks in your list.";
     }
 
+    /**
+     * Returns a message indicating that a task has been deleted from the list.
+     *
+     * @param task The task that was deleted
+     * @param taskCount The total number of tasks in the list after deletion
+     * @return A formatted message string
+     */
     public String deleteTaskMessage(Task task, int taskCount) {
         return "Noted. I've removed this task:"
                 + task.toString() + "\n" + "Now you have " + taskCount + " tasks in your list.";
     }
 
+    /**
+     * Displays a loading error message to the console.
+     */
     public void showLoadingError() {
         System.out.println("Oops, there is a loading error. Please try again.");
     }
 
+    /**
+     * Displays an error message to the console.
+     *
+     * @param error The error message to display
+     */
     public void showError(String error) {
         System.out.println(error);
     }

@@ -8,6 +8,11 @@ package seedu.doraemon;
 public class MarkCommand extends Command {
     private int taskIndex;
 
+    /**
+     * Constructs a MarkCommand with the specified task index.
+     *
+     * @param taskIndex The 1-based index of the task to be marked as done
+     */
     public MarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
