@@ -1,26 +1,96 @@
+/* This segment is modified/written by Cursor */
+/* Root container styling - sets the overall background with lighter blue-to-green gradient */
 .root {
-    main-color: rgb(237, 255, 242);       /* Create a looked-up color called "main-color" within root. */
-    -fx-background-color: main-color;
+    /* Beautiful lighter gradient background: light blue to light green for soft, pleasant look */
+    /* Defined as a looked-up color for reuse in other styles */
+    main-color: rgb(245, 255, 247);
+    /* Lighter blue to green linear gradient from top to bottom - pastel colors */
+    -fx-background-color: linear-gradient(to bottom, #90caf9, #80deea, #a5d6a7, #c8e6c9);
 }
 
+/* This segment is modified/written by Cursor */
+/* Text input field styling - Ultra fancy glassmorphism effect */
 .text-field {
-    -fx-background-color: #d9ffe2;
-    -fx-font: 20px "Arial";
+    /* Glassmorphism: semi-transparent white background with blur effect */
+    -fx-background-color: rgba(255, 255, 255, 0.95);
+    /* Rounded corners for modern appearance */
+    -fx-background-radius: 1.2em;
+    /* Ultra vibrant gradient border that matches the blue-to-green theme */
+    -fx-border-color: linear-gradient(to right, #00d4ff, #4caf50, #69f0ae);
+    -fx-border-radius: 1.2em;
+    -fx-border-width: 3px;
+    /* Cute, playful font family matching message bubbles */
+    -fx-font-family: "Comic Sans MS", "Marker Felt", "Chalkboard SE", "Trebuchet MS", sans-serif;
+    /* Slightly larger font for better readability when typing */
+    -fx-font-size: 16px;
+    /* Comfortable padding inside the text field */
+    -fx-padding: 14px 20px;
+    /* Dark gray text for good contrast */
+    -fx-text-fill: #1a1a1a;
+    /* Fancy multi-layer shadow for depth */
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.3), 12, 0.5, 0, 3),
+                dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0.4, 0, 2);
 }
 
+/* This segment is modified/written by Cursor */
+/* Text field focus state - provides spectacular visual feedback when user is typing */
+.text-field:focused {
+    /* Ultra vibrant gradient border when focused */
+    -fx-border-color: linear-gradient(to right, #00d4ff, #00b8d4, #4caf50, #69f0ae);
+    -fx-border-width: 4px;
+    /* Spectacular multi-layer shadow on focus with glow effect */
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.6), 18, 0.7, 0, 4),
+                dropshadow(gaussian, rgba(76, 175, 80, 0.5), 15, 0.6, 0, 3),
+                dropshadow(gaussian, rgba(0, 0, 0, 0.2), 12, 0.5, 0, 2);
+    /* Brighter background */
+    -fx-background-color: rgba(255, 255, 255, 1.0);
+}
+
+/* This segment is modified/written by Cursor */
+/* Send button styling - Ultra fancy gradient button with spectacular effects */
 .button {
-    -fx-background-color: mediumspringgreen;
-    -fx-font: italic bold 16px "Arial";
+    /* Ultra vibrant gradient background: bright blue to green to cyan for eye-popping look */
+    -fx-background-color: linear-gradient(to bottom right, #00d4ff, #00b8d4, #4caf50, #69f0ae);
+    /* Rounded corners matching text field */
+    -fx-background-radius: 1.2em;
+    /* Cute, playful font family matching overall design */
+    -fx-font-family: "Comic Sans MS", "Marker Felt", "Chalkboard SE", "Trebuchet MS", sans-serif;
+    -fx-font-size: 16.5px;
+    /* Bold text for button prominence */
+    -fx-font-weight: bold;
+    /* White text for contrast against gradient background */
+    -fx-text-fill: #ffffff;
+    /* Padding: 12px vertical, 20px horizontal for comfortable button size that fits text */
+    -fx-padding: 12px 20px;
+    /* Hand cursor on hover to indicate clickability */
+    -fx-cursor: hand;
+    /* Ultra fancy multi-layer shadow for incredible depth and floating effect */
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.5), 15, 0.7, 0, 5),
+                dropshadow(gaussian, rgba(76, 175, 80, 0.4), 12, 0.6, 0, 4),
+                dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 0, 3);
+    /* Smooth transitions */
+    -fx-transition: all 0.3s ease;
 }
 
+/* This segment is modified/written by Cursor */
+/* Button hover state - provides spectacular visual feedback when mouse is over button */
 .button:hover {
-    -fx-background-color:cyan;
-    -fx-font-size: 18px;
+    /* Ultra bright, more vibrant gradient on hover */
+    -fx-background-color: linear-gradient(to bottom right, #00e5ff, #00d4ff, #69f0ae, #81c784);
+    /* Spectacular enhanced shadow effect for incredible depth and lift */
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.7), 20, 0.8, 0, 7),
+                dropshadow(gaussian, rgba(76, 175, 80, 0.6), 18, 0.7, 0, 5),
+                dropshadow(gaussian, rgba(0, 0, 0, 0.25), 15, 0.6, 0, 4);
 }
 
+/* This segment is modified/written by Cursor */
+/* Button pressed state - provides tactile feedback when clicked */
 .button:pressed {
-    -fx-background-color:orange;
-    -fx-font-size: 20px;
+    /* Deeper, richer gradient when pressed */
+    -fx-background-color: linear-gradient(to bottom right, #0097a7, #006064, #2e7d32, #1b5e20);
+    /* Reduced shadow for pressed effect */
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.3), 10, 0.5, 0, 2),
+                dropshadow(gaussian, rgba(76, 175, 80, 0.3), 8, 0.4, 0, 2);
 }
 
 .scroll-pane,
@@ -28,14 +98,50 @@
     -fx-background-color: transparent;
 }
 
+/* This segment is modified/written by Cursor */
+/* Fancy scrollbar styling */
 .scroll-bar {
-    -fx-font-size: 10px;  /* Change width of scroll bar. */
-    -fx-background-color: main-color;
+    -fx-font-size: 10px;
+    /* Transparent background for modern look */
+    -fx-background-color: transparent;
+    /* Wider scrollbar for better usability */
+    -fx-pref-width: 14px;
 }
 
+.scroll-bar:vertical .track {
+    /* Completely transparent track to hide the central bar */
+    -fx-background-color: transparent;
+    -fx-background-radius: 0px;
+    -fx-opacity: 0;
+}
+
+.scroll-bar:vertical .track-background {
+    /* Hide track background completely */
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+}
+
+.scroll-bar .corner {
+    /* Hide corner area */
+    -fx-background-color: transparent;
+}
+
+/* This segment is modified/written by Cursor */
+/* Ultra fancy scrollbar thumb with spectacular gradient */
 .scroll-bar .thumb {
-    -fx-background-color: #ff9cb4;
-    -fx-background-radius: 1em;
+    /* Ultra vibrant gradient thumb: blue to green matching the theme */
+    -fx-background-color: linear-gradient(to bottom, #00d4ff, #00b8d4, #4caf50, #69f0ae);
+    -fx-background-radius: 8px;
+    /* Fancy multi-layer shadow for depth */
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.5), 8, 0.6, 0, 2),
+                dropshadow(gaussian, rgba(76, 175, 80, 0.4), 6, 0.5, 0, 1);
+}
+
+.scroll-bar .thumb:hover {
+    /* Ultra bright gradient on hover */
+    -fx-background-color: linear-gradient(to bottom, #00e5ff, #00d4ff, #69f0ae, #81c784);
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.7), 12, 0.7, 0, 3),
+                dropshadow(gaussian, rgba(76, 175, 80, 0.6), 10, 0.6, 0, 2);
 }
 
 /* Hides the increment and decrement buttons. */

@@ -1,5 +1,6 @@
 package seedu.doraemon;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -27,8 +28,19 @@ public class MainWindow extends AnchorPane {
     private Image doraemonImage = new Image(this.getClass().getResourceAsStream("/images/Doraemon.png"));
 
     @FXML
+    // This segment is modified/written by Cursor
     public void initialize() {
-        scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        // Bind scrollbar to automatically scroll to bottom when new messages are added
+        // Use ChangeListener to update scroll position based on container height changes
+        dialogContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
+            // Use Platform.runLater to ensure scrolling happens after layout is complete
+            Platform.runLater(() -> {
+                scrollPane.setVvalue(1.0);
+            });
+        });
+        // Ensure scrollbar is properly configured
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(false);
     }
 
     /** Injects the Doraemon instance */
@@ -41,6 +53,7 @@ public class MainWindow extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
+    // This segment is modified/written by Cursor
     private void handleUserInput() {
         String input = userInput.getText();
         String response = doraemon.getResponse(input);
@@ -49,6 +62,11 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, doraemonImage)
         );
         userInput.clear();
+        // Ensure scrollbar moves to bottom after adding new messages
+        // Use Platform.runLater to ensure scrolling happens after layout is complete
+        Platform.runLater(() -> {
+            scrollPane.setVvalue(1.0);
+        });
     }
 }
 

@@ -5,12 +5,21 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 
+<!-- This segment is modified/written by Cursor -->
+<!-- DialogBox layout: Contains a message label and avatar image -->
+<!-- Default alignment is TOP_RIGHT for user messages; flipped to TOP_LEFT for bot messages -->
 <fx:root alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="400.0" stylesheets="@../css/dialog-box.css" type="javafx.scene.layout.HBox" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <children>
+        <!-- Message text label with wrapping enabled for long messages -->
         <Label fx:id="dialog" minHeight="-Infinity" text="Label" wrapText="true" />
+        <!-- Avatar image: 99x99 pixels, maintains aspect ratio -->
         <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
     </children>
+    <!-- Padding: 14px on all sides for luxurious spacing around content -->
+    <!-- Increased for more elegant, spacious feel -->
     <padding>
-        <Insets bottom="15.0" left="5.0" right="5.0" top="15.0" />
+        <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
     </padding>
+    <!-- Spacing: 12px gap between label and avatar for elegant separation -->
+    <spacing>12.0</spacing>
 </fx:root>
