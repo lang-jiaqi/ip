@@ -41,6 +41,8 @@ public class MainWindow extends AnchorPane {
         // Ensure scrollbar is properly configured
         scrollPane.setFitToWidth(true);
         scrollPane.setFitToHeight(false);
+        // Make VBox fill the available width
+        dialogContainer.setFillWidth(true);
     }
 
     /** Injects the Doraemon instance */

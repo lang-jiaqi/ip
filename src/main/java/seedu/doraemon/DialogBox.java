@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 /**
  * Represents a dialog box consisting of an ImageView to represent the speaker's face
@@ -63,6 +64,8 @@ public class DialogBox extends HBox {
         db.setAlignment(Pos.TOP_RIGHT);
         // Allow the HBox to expand to full width for proper alignment
         db.setMaxWidth(Double.MAX_VALUE);
+        // Set to fill available width
+        HBox.setHgrow(db, Priority.ALWAYS);
         return db;
     }
 
@@ -84,6 +87,8 @@ public class DialogBox extends HBox {
         db.flip();
         // Allow the HBox to expand to full width for proper alignment
         db.setMaxWidth(Double.MAX_VALUE);
+        // Set to fill available width
+        HBox.setHgrow(db, Priority.ALWAYS);
         return db;
     }
 }
