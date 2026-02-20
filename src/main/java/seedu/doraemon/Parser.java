@@ -29,6 +29,8 @@ public class Parser {
         switch (commandWord) {
         case "bye":
             return new ExitCommand();
+        case "hi":
+            return new HiCommand();
         case "list":
             return new ListCommand();
         case "mark":
@@ -48,7 +50,7 @@ public class Parser {
         case "priority":
             return parsePriorityCommand(arguments);
         default:
-            throw new DoraemonException("Unknown command: " + commandWord);
+            throw new DoraemonException("Sorry, I don't know what that means.");
         }
     }
 
@@ -94,6 +96,7 @@ public class Parser {
         String raw = arguments.trim();
         String description;
         int priority = 2; // Default priority
+        boolean hasPriority = false;
 
         // New format: "description [priority]"
         int openBracket = raw.lastIndexOf('[');
@@ -106,6 +109,7 @@ public class Parser {
                 if (priority < 1 || priority > 3) {
                     throw new DoraemonException("Priority must be 1, 2, or 3");
                 }
+                hasPriority = true;
             } catch (NumberFormatException e) {
                 throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
             }
@@ -119,6 +123,7 @@ public class Parser {
                     if (priority < 1 || priority > 3) {
                         throw new DoraemonException("Priority must be 1, 2, or 3");
                     }
+                    hasPriority = true;
                 } catch (NumberFormatException e) {
                     throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
                 }
@@ -127,6 +132,10 @@ public class Parser {
 
         if (description.isEmpty()) {
             throw new DoraemonException("The description of a todo cannot be empty");
+        }
+
+        if (!hasPriority) {
+            throw new DoraemonException("Please specify a priority using [1], [2], or [3].");
         }
 
         ToDo todo = new ToDo(description, priority);
@@ -150,6 +159,7 @@ public class Parser {
         String description = dParts[0].trim();
         String dateString = dParts[1].trim();
         int priority = 2; // Default priority
+        boolean hasPriority = false;
 
         // Old style: third part is explicit priority "description / date / priority"
         if (dParts.length == 3) {
@@ -158,6 +168,7 @@ public class Parser {
                 if (priority < 1 || priority > 3) {
                     throw new DoraemonException("Priority must be 1, 2, or 3");
                 }
+                hasPriority = true;
             } catch (NumberFormatException e) {
                 throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
             }
@@ -173,6 +184,7 @@ public class Parser {
                     if (priority < 1 || priority > 3) {
                         throw new DoraemonException("Priority must be 1, 2, or 3");
                     }
+                    hasPriority = true;
                 } catch (NumberFormatException e) {
                     throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
                 }
@@ -184,6 +196,10 @@ public class Parser {
             date = LocalDate.parse(dateString);
         } catch (DateTimeParseException e) {
             throw new DoraemonException(DATE_FORMAT_HINT);
+        }
+
+        if (!hasPriority) {
+            throw new DoraemonException("Please specify a priority using [1], [2], or [3].");
         }
 
         Deadline deadline = new Deadline(description, priority, date);
@@ -208,6 +224,7 @@ public class Parser {
         String startString = eParts[1].trim();
         String endString = eParts[2].trim();
         int priority = 2; // Default priority
+        boolean hasPriority = false;
 
         // Old style: fourth part is explicit priority "description / start / end / priority"
         if (eParts.length == 4) {
@@ -216,6 +233,7 @@ public class Parser {
                 if (priority < 1 || priority > 3) {
                     throw new DoraemonException("Priority must be 1, 2, or 3");
                 }
+                hasPriority = true;
             } catch (NumberFormatException e) {
                 throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
             }
@@ -231,6 +249,7 @@ public class Parser {
                     if (priority < 1 || priority > 3) {
                         throw new DoraemonException("Priority must be 1, 2, or 3");
                     }
+                    hasPriority = true;
                 } catch (NumberFormatException e) {
                     throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
                 }
@@ -244,6 +263,10 @@ public class Parser {
             dateTo = LocalDate.parse(endString);
         } catch (DateTimeParseException e) {
             throw new DoraemonException(DATE_FORMAT_HINT);
+        }
+
+        if (!hasPriority) {
+            throw new DoraemonException("Please specify a priority using [1], [2], or [3].");
         }
 
         Event event = new Event(description, priority, dateFrom, dateTo);
