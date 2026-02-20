@@ -53,6 +53,11 @@ public class TaskList {
         return tasks.get(task_number);
     }
 
+    /**
+     * Returns the number of tasks in the list.
+     *
+     * @return The number of tasks currently in the list
+     */
     public int size() {
         return tasks.size();
     }

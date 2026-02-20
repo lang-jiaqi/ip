@@ -1,25 +1,70 @@
+/* This segment is modified/written by Cursor */
+/* Styling for user message bubbles (right-aligned) - Ultra fancy gradient design */
 .label {
-    -fx-background-color: linear-gradient(to bottom right, #00ffbf, #00ddff);
-    -fx-border-color: #d55e00 #009e73 #cc79a7 #0072b2;
-    -fx-border-width: 2px;
-    -fx-background-radius: 1em 1em 0 1em;
-    -fx-border-radius: 1em 1em 0 1em;
+    /* Ultra vibrant gradient background: bright blue to cyan to deep blue for eye-catching look */
+    -fx-background-color: linear-gradient(to bottom right, #00d4ff, #00b8d4, #0097a7, #006064);
+    /* Rounded corners: top-left and top-right rounded, bottom-right rounded, bottom-left sharp */
+    /* This creates a "tail" effect pointing to the avatar on the right */
+    -fx-background-radius: 1.8em 1.8em 0.4em 1.8em;
+    /* Internal padding: 16px vertical, 20px horizontal for luxurious text spacing */
+    -fx-padding: 16px 20px;
+    /* Cute, playful font stack - rounded and friendly */
+    -fx-font-family: "Comic Sans MS", "Marker Felt", "Chalkboard SE", "Trebuchet MS", sans-serif;
+    /* Font size optimized for readability - slightly larger for cuter look */
+    -fx-font-size: 15.5px;
+    /* White text color with slight glow for extra fancy effect */
+    -fx-text-fill: #ffffff;
+    /* Enable text wrapping for long messages */
+    -fx-wrap-text: true;
+    /* Maximum width prevents messages from becoming too wide and hard to read */
+    -fx-max-width: 320px;
+    /* Line spacing for better readability of multi-line messages */
+    -fx-line-spacing: 4px;
+    /* Ultra fancy multi-layer shadow for incredible depth and floating effect */
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.5), 20, 0.7, 0, 6),
+                dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.6, 0, 4);
+    /* Smooth transitions for hover effects */
+    -fx-cursor: default;
 }
 
+/* This segment is modified/written by Cursor */
+/* Styling for bot (Doraemon) message bubbles (left-aligned) - Ultra fancy gradient design */
 .reply-label {
-    -fx-background-radius: 1em 1em 1em 0;
-    -fx-border-radius: 1em 1em 1em 0;
+    /* Ultra vibrant gradient background: bright green to emerald to deep green for fresh, energetic look */
+    -fx-background-color: linear-gradient(to bottom right, #69f0ae, #4caf50, #2e7d32, #1b5e20);
+    /* Rounded corners: top-left and top-right rounded, bottom-left rounded, bottom-right sharp */
+    /* This creates a "tail" effect pointing to the avatar on the left */
+    -fx-background-radius: 1.8em 1.8em 1.8em 0.4em;
+    /* Ultra fancy multi-layer shadow matching user messages with green glow */
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.5), 20, 0.7, 0, 6),
+                dropshadow(gaussian, rgba(0, 0, 0, 0.3), 15, 0.6, 0, 4);
+    /* White text for contrast */
+    -fx-text-fill: #ffffff;
+    /* Inherits padding, font, and other properties from .label */
 }
 
+/* This segment is modified/written by Cursor */
+/* Styling for avatar images (both user and bot) - Ultra fancy design with spectacular shadows */
 #displayPicture {
-    /* Shadow effect on image. */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.5, 5, 5);
-
-    /* Change size of image. */
+    /* Ultra fancy multi-layer shadow effect for incredible depth and floating effect */
+    /* Creates a glowing border-like appearance with colorful outer glow */
+    /* Multiple shadows: colored glow, white border, and depth shadow */
+    -fx-effect: dropshadow(gaussian, rgba(0, 212, 255, 0.5), 28, 0.9, 0, 10),
+                dropshadow(gaussian, rgba(76, 175, 80, 0.5), 28, 0.9, 0, 10),
+                dropshadow(gaussian, rgba(255, 255, 255, 0.95), 2, 1, 0, 0),
+                dropshadow(gaussian, rgba(0, 0, 0, 0.35), 22, 0.8, 0, 8);
+    
+    /* Maintain original image size (no scaling) */
     -fx-scale-x: 1;
     -fx-scale-y: 1;
-
-    /* Rotate image clockwise by degrees. */
+    
+    /* No rotation applied */
     -fx-rotate: 0;
+    
+    /* Smooth edges */
+    -fx-smooth: true;
+    
+    /* Add subtle glow effect */
+    -fx-opacity: 1.0;
 }
 

@@ -8,6 +8,11 @@ package seedu.doraemon;
 public class UnmarkCommand extends Command {
     private int taskIndex;
 
+    /**
+     * Constructs an UnmarkCommand with the specified task index.
+     *
+     * @param taskIndex The 1-based index of the task to be marked as not done
+     */
     public UnmarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
