@@ -8,10 +8,11 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructs a new Task with the given description.
+     * Constructs a new Task with the given description and priority.
      * The task is initially marked as not done.
      *
      * @param description The description of the task
+     * @param priority The priority level (1 = highest, 2 = medium, 3 = lowest)
      */
     public Task(String description, int priority) {
         this.description = description;

@@ -137,5 +137,80 @@ public class Ui {
     public void showError(String error) {
         System.out.println(error);
     }
-  }
+
+    /**
+     * Returns a formatted string containing all tasks with priority 1 (highest priority).
+     *
+     * @param tasks The TaskList to filter
+     * @return A formatted string containing first priority tasks
+     * @throws DoraemonException If there is an error retrieving tasks
+     */
+    public String getFirstPriorityTasks(TaskList tasks) throws DoraemonException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the first priority tasks (priority 1):\n");
+        int count = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            Task currTask = tasks.getTask(i);
+            assert currTask != null : "task is null";
+            if (currTask.getPriority() == 1) {
+                count++;
+                sb.append(count).append(". ").append(currTask.toString()).append("\n");
+            }
+        }
+        if (count == 0) {
+            return "No first priority tasks found.";
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns a formatted string containing all tasks with priority 2 (medium priority).
+     *
+     * @param tasks The TaskList to filter
+     * @return A formatted string containing medium priority tasks
+     * @throws DoraemonException If there is an error retrieving tasks
+     */
+    public String getMediumPriorityTasks(TaskList tasks) throws DoraemonException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the medium priority tasks (priority 2):\n");
+        int count = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            Task currTask = tasks.getTask(i);
+            assert currTask != null : "task is null";
+            if (currTask.getPriority() == 2) {
+                count++;
+                sb.append(count).append(". ").append(currTask.toString()).append("\n");
+            }
+        }
+        if (count == 0) {
+            return "No medium priority tasks found.";
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns a formatted string containing all tasks with priority 3 (lowest priority).
+     *
+     * @param tasks The TaskList to filter
+     * @return A formatted string containing low priority tasks
+     * @throws DoraemonException If there is an error retrieving tasks
+     */
+    public String getLowPriorityTasks(TaskList tasks) throws DoraemonException {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Here are the low priority tasks (priority 3):\n");
+        int count = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            Task currTask = tasks.getTask(i);
+            assert currTask != null : "task is null";
+            if (currTask.getPriority() == 3) {
+                count++;
+                sb.append(count).append(". ").append(currTask.toString()).append("\n");
+            }
+        }
+        if (count == 0) {
+            return "No low priority tasks found.";
+        }
+        return sb.toString();
+    }
+}
 

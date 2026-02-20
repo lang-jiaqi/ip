@@ -42,6 +42,8 @@ public class Parser {
             return parseEventCommand(arguments);
         case "find":
             return parseFindCommand(arguments);
+        case "priority":
+            return parsePriorityCommand(arguments);
         default:
             throw new DoraemonException("Unknown command: " + commandWord);
         }
@@ -68,83 +70,107 @@ public class Parser {
             default:
                 throw new DoraemonException("Invalid index:" + arguments);
             }
-        case"todo":
-            String[] tParts = arguments.split("/", 2);
-            if (arguments.isEmpty()) {
-                throw new DoraemonException("The description of a todo cannot be empty");
-            }
-            ToDo todo = new ToDo(tParts[0], Integer.parseInt(tParts[1]));
-            return new AddCommand(todo);
-        case"deadline":
-            String[] dParts = arguments.split("/", 3);
-            if (dParts.length != 2) {
-                throw new DoraemonException("seedu.doraemon.Deadline format: description / by date");
-            }
-            LocalDate date = LocalDate.parse(dParts[1]);
-            Deadline deadline = new Deadline(dParts[0], Integer.parseInt(dParts[2]), date);
-            return new AddCommand(deadline);
-        case"event":
-            String[] eParts = arguments.split("/", 4);
-            if (eParts.length != 3) {
-                throw new DoraemonException("seedu.doraemon.Event format: description / from start / to end");
-            }
-            LocalDate dateFrom = LocalDate.parse(eParts[1]);
-            LocalDate dateTo = LocalDate.parse(eParts[2]);
-            Event event = new Event(eParts[0], Integer.parseInt(eParts[3]), dateFrom, dateTo);
-            return new AddCommand(event);
-        case"find":
-            String keyword = arguments;
-            return new FindCommand(keyword);
-        case"priority":
-            return new PriorityListCommand( Integer.parseInt(arguments));
+        } catch (NumberFormatException e) {
+            throw new DoraemonException("Invalid index:" + arguments);
+        }
+    }
 
     /**
      * Parses a todo command and creates an AddCommand with a ToDo task.
+     * Format: "description / priority" or just "description" (defaults to priority 2)
      *
-     * @param arguments The description of the todo task
+     * @param arguments The description and optional priority of the todo task
      * @return An AddCommand containing the todo task
-     * @throws DoraemonException If the description is empty
+     * @throws DoraemonException If the description is empty or format is invalid
      */
     private static Command parseTodoCommand(String arguments) throws DoraemonException {
         if (arguments.isEmpty()) {
             throw new DoraemonException("The description of a todo cannot be empty");
         }
-        ToDo todo = new ToDo(arguments);
+        
+        String[] parts = arguments.split(" / ", 2);
+        String description = parts[0].trim();
+        int priority = 2; // Default priority
+        
+        if (parts.length == 2) {
+            try {
+                priority = Integer.parseInt(parts[1].trim());
+                if (priority < 1 || priority > 3) {
+                    throw new DoraemonException("Priority must be 1, 2, or 3");
+                }
+            } catch (NumberFormatException e) {
+                throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
+            }
+        }
+        
+        ToDo todo = new ToDo(description, priority);
         return new AddCommand(todo);
     }
 
     /**
      * Parses a deadline command and creates an AddCommand with a Deadline task.
+     * Format: "description / date / priority" or "description / date" (defaults to priority 2)
      *
-     * @param arguments The arguments containing description and date separated by " / "
+     * @param arguments The arguments containing description, date, and optional priority
      * @return An AddCommand containing the deadline task
      * @throws DoraemonException If the format is invalid
      */
     private static Command parseDeadlineCommand(String arguments) throws DoraemonException {
-        String[] dParts = arguments.split(" / ", 2);
-        if (dParts.length != 2) {
-            throw new DoraemonException("seedu.doraemon.Deadline format: description / by date");
+        String[] dParts = arguments.split(" / ", 3);
+        if (dParts.length < 2) {
+            throw new DoraemonException("Deadline format: description / by date [/ priority]");
         }
-        LocalDate date = LocalDate.parse(dParts[1]);
-        Deadline deadline = new Deadline(dParts[0], date);
+        
+        String description = dParts[0].trim();
+        LocalDate date = LocalDate.parse(dParts[1].trim());
+        int priority = 2; // Default priority
+        
+        if (dParts.length == 3) {
+            try {
+                priority = Integer.parseInt(dParts[2].trim());
+                if (priority < 1 || priority > 3) {
+                    throw new DoraemonException("Priority must be 1, 2, or 3");
+                }
+            } catch (NumberFormatException e) {
+                throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
+            }
+        }
+        
+        Deadline deadline = new Deadline(description, priority, date);
         return new AddCommand(deadline);
     }
 
     /**
      * Parses an event command and creates an AddCommand with an Event task.
+     * Format: "description / start / end / priority" or "description / start / end" (defaults to priority 2)
      *
-     * @param arguments The arguments containing description, start date, and end date separated by " / "
+     * @param arguments The arguments containing description, start date, end date, and optional priority
      * @return An AddCommand containing the event task
      * @throws DoraemonException If the format is invalid
      */
     private static Command parseEventCommand(String arguments) throws DoraemonException {
-        String[] eParts = arguments.split(" / ", 3);
-        if (eParts.length != 3) {
-            throw new DoraemonException("seedu.doraemon.Event format: description / from start / to end");
+        String[] eParts = arguments.split(" / ", 4);
+        if (eParts.length < 3) {
+            throw new DoraemonException("Event format: description / from start / to end [/ priority]");
         }
-        LocalDate dateFrom = LocalDate.parse(eParts[1]);
-        LocalDate dateTo = LocalDate.parse(eParts[2]);
-        Event event = new Event(eParts[0], dateFrom, dateTo);
+        
+        String description = eParts[0].trim();
+        LocalDate dateFrom = LocalDate.parse(eParts[1].trim());
+        LocalDate dateTo = LocalDate.parse(eParts[2].trim());
+        int priority = 2; // Default priority
+        
+        if (eParts.length == 4) {
+            try {
+                priority = Integer.parseInt(eParts[3].trim());
+                if (priority < 1 || priority > 3) {
+                    throw new DoraemonException("Priority must be 1, 2, or 3");
+                }
+            } catch (NumberFormatException e) {
+                throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
+            }
+        }
+        
+        Event event = new Event(description, priority, dateFrom, dateTo);
         return new AddCommand(event);
     }
 
@@ -156,5 +182,24 @@ public class Parser {
      */
     private static Command parseFindCommand(String arguments) {
         return new FindCommand(arguments);
+    }
+
+    /**
+     * Parses a priority command and creates a PriorityListCommand.
+     *
+     * @param arguments The priority level (1, 2, or 3)
+     * @return A PriorityListCommand with the specified priority
+     * @throws DoraemonException If the priority is invalid
+     */
+    private static Command parsePriorityCommand(String arguments) throws DoraemonException {
+        try {
+            int priority = Integer.parseInt(arguments.trim());
+            if (priority < 1 || priority > 3) {
+                throw new DoraemonException("Priority must be 1, 2, or 3");
+            }
+            return new PriorityListCommand(priority);
+        } catch (NumberFormatException e) {
+            throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
+        }
     }
 }

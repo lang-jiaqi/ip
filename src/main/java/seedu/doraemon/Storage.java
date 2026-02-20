@@ -125,36 +125,51 @@ public class Storage {
     /**
      * Creates a ToDo task from parsed parts.
      *
-     * @param parts The array containing task type, status, and description
+     * @param parts The array containing task type, status, description, and priority
      * @return The created ToDo task
      */
     private Task createTodoTask(String[] parts) {
-        assert parts.length == 3 : "ToDo line must have 3 parts";
-        return new ToDo(parts[2]);
+        assert parts.length >= 3 : "ToDo line must have at least 3 parts";
+        String description = parts[2].trim();
+        int priority = 2; // Default priority if not specified
+        if (parts.length >= 4) {
+            priority = Integer.parseInt(parts[3].trim());
+        }
+        return new ToDo(description, priority);
     }
 
     /**
      * Creates a Deadline task from parsed parts.
      *
-     * @param parts The array containing task type, status, description, and due date
+     * @param parts The array containing task type, status, description, due date, and priority
      * @return The created Deadline task
      */
     private Task createDeadlineTask(String[] parts) {
-        assert parts.length == 4 : "Deadline line must have 4 parts";
-        LocalDate date = LocalDate.parse(parts[3]);
-        return new Deadline(parts[2], date);
+        assert parts.length >= 4 : "Deadline line must have at least 4 parts";
+        String description = parts[2].trim();
+        LocalDate date = LocalDate.parse(parts[3].trim());
+        int priority = 2; // Default priority if not specified
+        if (parts.length >= 5) {
+            priority = Integer.parseInt(parts[4].trim());
+        }
+        return new Deadline(description, priority, date);
     }
 
     /**
      * Creates an Event task from parsed parts.
      *
-     * @param parts The array containing task type, status, description, start date, and end date
+     * @param parts The array containing task type, status, description, start date, end date, and priority
      * @return The created Event task
      */
     private Task createEventTask(String[] parts) {
-        assert parts.length == 5 : "Event line must have 5 parts";
-        LocalDate startTime = LocalDate.parse(parts[3]);
-        LocalDate endTime = LocalDate.parse(parts[4]);
-        return new Event(parts[2], startTime, endTime);
+        assert parts.length >= 5 : "Event line must have at least 5 parts";
+        String description = parts[2].trim();
+        LocalDate startTime = LocalDate.parse(parts[3].trim());
+        LocalDate endTime = LocalDate.parse(parts[4].trim());
+        int priority = 2; // Default priority if not specified
+        if (parts.length >= 6) {
+            priority = Integer.parseInt(parts[5].trim());
+        }
+        return new Event(description, priority, startTime, endTime);
     }
 }

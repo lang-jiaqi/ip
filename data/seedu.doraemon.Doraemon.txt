@@ -1,7 +1,4 @@
-T | 0 | read book
-T | 1 | eat food
-D | 1 | assignment1 | 2026-02-05
-E | 0 | lab2 | 2026-02-19 | 2026-03-01
-T | 0 | eat dinnere
-D | 0 | assignment1 | 2026-03-02
-E | 0 | party | 2026-02-04 | 2026-02-08
+T | 1 | eat food | 2
+E | 0 | lab2 | 2026-02-19 | 2026-03-01 | 2
+T | 0 | play 1 | 2
+T | 0 | walk | 1
