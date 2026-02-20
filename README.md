@@ -34,7 +34,7 @@ That's it! You're ready to go! 🎉
 ## 💬 How to Use
 
 ### Commands You Can Use
-
+- **`hi`** 🥳 - See all possible commands and features
 - **`list`** 📋 - See all your tasks at once!
 - **`todo <description> [priority]`** ➕ - Add a simple todo task
 - **`deadline <description> / <date> [priority]`** ⏰ - Add a deadline (date format: YYYY-MM-DD)
@@ -49,6 +49,7 @@ That's it! You're ready to go! 🎉
 ### Example Time! 🎯
 
 ```
+hi
 todo read book 📖
 deadline assignment1 / 2026-02-05 [1]📝
 event lab2 / 2026-02-19 / 2026-03-01 [2] 🧪
