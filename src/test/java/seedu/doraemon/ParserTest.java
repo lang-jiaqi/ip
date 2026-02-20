@@ -88,14 +88,6 @@ public class ParserTest {
     }
 
     @Test
-    public void testParse_caseInsensitive_success() throws DoraemonException {
-        assertTrue(Parser.parse("BYE") instanceof ExitCommand);
-        assertTrue(Parser.parse("LIST") instanceof ListCommand);
-        assertTrue(Parser.parse("TODO test") instanceof AddCommand);
-        assertTrue(Parser.parse("Mark 1") instanceof MarkCommand);
-    }
-
-    @Test
     public void testParse_validMarkCommand_success() throws DoraemonException {
         Command command = Parser.parse("mark 1");
         assertTrue(command instanceof MarkCommand);

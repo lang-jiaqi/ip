@@ -61,12 +61,8 @@ public class Ui {
             assert currTask != null : "task is null";
             String taskContent = currTask.getDescription();
             assert taskContent != null : "task description is null";
-            String[] taskKeywords = taskContent.trim().split("\\s+");
-            for (String taskKeyword : taskKeywords) {
-                if (taskKeyword.equals(keyword)) {
-                    keywordTasks.add(currTask);
-                    break;
-                }
+            if (taskContent.contains(keyword)) {
+                keywordTasks.add(currTask);
             }
         }
         if (keywordTasks.size() == 0) {
