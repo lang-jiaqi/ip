@@ -1,5 +1,6 @@
 
 package seedu.doraemon;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -136,4 +137,5 @@ public class Ui {
     public void showError(String error) {
         System.out.println(error);
     }
-}
+  }
+

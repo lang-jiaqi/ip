@@ -1,5 +1,5 @@
-T | 0 | read book
-D | 0 | B | june
-T | 1 | read book
-D | 0 | good | 5pm
-E | 0 | good | today 5pm | tomorrow 5pm
+T | 0 | read book | 1
+T | 0 | eat food | 2
+D | 0 | assignment1 | 2026-02-05 | 1
+E | 0 | lab2 | 2026-02-19 | 2026-03-01 | 1
+T | 0 | eat dinner | 1
