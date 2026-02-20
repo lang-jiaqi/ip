@@ -125,7 +125,12 @@ public class Parser {
         }
         
         String description = dParts[0].trim();
-        LocalDate date = LocalDate.parse(dParts[1].trim());
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dParts[1].trim());
+        } catch (DateTimeParseException e) {
+            throw new DoraemonException(DATE_FORMAT_HINT);
+        }
         int priority = 2; // Default priority
         
         if (dParts.length == 3) {
@@ -158,8 +163,14 @@ public class Parser {
         }
         
         String description = eParts[0].trim();
-        LocalDate dateFrom = LocalDate.parse(eParts[1].trim());
-        LocalDate dateTo = LocalDate.parse(eParts[2].trim());
+        LocalDate dateFrom;
+        LocalDate dateTo;
+        try {
+            dateFrom = LocalDate.parse(eParts[1].trim());
+            dateTo = LocalDate.parse(eParts[2].trim());
+        } catch (DateTimeParseException e) {
+            throw new DoraemonException(DATE_FORMAT_HINT);
+        }
         int priority = 2; // Default priority
         
         if (eParts.length == 4) {
