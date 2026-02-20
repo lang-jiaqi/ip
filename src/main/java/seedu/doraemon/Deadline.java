@@ -10,22 +10,22 @@ public class Deadline extends Task {
     protected String by;
 
     /**
-     * Constructs a new Deadline task with the given description and due date.
-     *
-     * @param description The description of the deadline task
-     * @param by The due date of the deadline task
+     * A class that represents the deadline tasks
+     * @param description
+     * @param priority
+     * @param by
      */
-    public Deadline(String description, LocalDate by) {
-        super(description);
+    public Deadline(String description, int priority, LocalDate by) {
+        super(description, priority);
         this.by = by.toString();
     }
     @Override
     public String toFileFormat() {
-        return "D | " + getSatusIconForFuile() + " | " + description + " | " + by;
+        return "D | " + getSatusIconForFuile() + " | " + description + " | " + by + " | " + priority;
     }
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + by + ")" + "*" + priority + "*";
     }
     @Override
     public String getSatusIcon() {
@@ -42,6 +42,10 @@ public class Deadline extends Task {
     @Override
     public void unMark() {
         isDone = false;
+    }
+    @Override
+    public int getPriority() {
+        return priority;
     }
 
 }

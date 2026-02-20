@@ -3,16 +3,19 @@ import java.util.ArrayList;
 /**
  * Contains the task list and has operations to add/delete tasks in the list.
  */
+@SuppressWarnings("checkstyle:Regexp")
 public class TaskList {
     private ArrayList<Task> tasks;
 
     /**
      * Constructs a TaskList with an existing list of tasks.
+     *
      * @param tasks Initial list of tasks.
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
+
     /**
      * Constructs an empty TaskList.
      */
@@ -22,6 +25,7 @@ public class TaskList {
 
     /**
      * Adds a task to the list.
+     *
      * @param task The task to be added.
      */
     public void add(Task task) {
@@ -30,16 +34,18 @@ public class TaskList {
 
     /**
      * Deletes a task from the list based on its index.
+     *
      * @param task_number The 1-based index of the task to be deleted.
      * @return The deleted task.
      * @throws DoraemonException If the index is out of bounds.
      */
     public Task delete(int task_number) {
-        return tasks.remove(task_number - 1 );
+        return tasks.remove(task_number - 1);
     }
 
     /**
      * Gets a task from the list based on its index.
+     *
      * @param task_number The 0-based index of the task.
      * @return The task at the specified index.
      */
@@ -56,4 +62,3 @@ public class TaskList {
         return tasks.size();
     }
 }
-
