@@ -24,13 +24,17 @@ public class Doraemon {
             tasks = new TaskList();
         }
     }
-    public String getResponse(String userInput) {
+    /**
+     * Processes user input and returns a response. The response indicates
+     * the message to show and whether the application should exit (e.g. after "bye").
+     */
+    public Response getResponse(String userInput) {
         try {
             Command command = Parser.parse(userInput);
-            String response = command.execute(tasks, ui, storage);
-            return response;
+            String message = command.execute(tasks, ui, storage);
+            return new Response(message, command.isExit());
         } catch (DoraemonException e) {
-            return e.getMessage();
+            return new Response(e.getMessage(), false);
         }
     }
     

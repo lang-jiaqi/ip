@@ -1,8 +1,10 @@
 package seedu.doraemon;
 
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.util.Duration;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -68,17 +70,22 @@ public class MainWindow extends AnchorPane {
     // This segment is modified/written by Cursor
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = doraemon.getResponse(input);
+        Response response = doraemon.getResponse(input);
         dialogContainer.getChildren().addAll(
                 DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, doraemonImage)
+                DialogBox.getDukeDialog(response.getMessage(), doraemonImage)
         );
         userInput.clear();
         // Ensure scrollbar moves to bottom after adding new messages
-        // Use Platform.runLater to ensure scrolling happens after layout is complete
         Platform.runLater(() -> {
             scrollPane.setVvalue(1.0);
         });
+        // Exit application after showing bye message (delay so user can see it)
+        if (response.isExit()) {
+            PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+            delay.setOnFinished(e -> Platform.exit());
+            delay.play();
+        }
     }
 }
 

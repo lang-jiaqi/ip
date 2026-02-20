@@ -2,6 +2,7 @@
 package seedu.doraemon;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  * Parses user input into executable commands.
@@ -9,6 +10,8 @@ import java.time.LocalDate;
  */
 
 public class Parser {
+    /** Expected date format for deadline and event. */
+    private static final String DATE_FORMAT_HINT = "Invalid date. Expected format: yyyy-MM-dd (e.g. 2025-02-22)";
     /**
      * Parses the full user input string and returns the corresponding Command object.
      *
