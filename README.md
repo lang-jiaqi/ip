@@ -8,7 +8,7 @@ Hey there! 👋 Meet Doraemon - your super cute and friendly schedule assistant!
 
 - ✅ **Task Management**: Add, delete, mark, and unmark tasks like a pro!
 - 📝 **Multiple Task Types**: Todo, Deadline, and Event tasks - we've got you covered!
-- 🔍 **Smart Search**: Find your tasks super quickly with keyword search
+- 🔍 **Smart Search**: Find your tasks super quickly with keyword search and Retrieve tasks with certain priority!
 - 🎨 **Beautiful GUI**: Gorgeous gradient backgrounds and smooth animations that'll make you smile 😊
 - 💾 **Auto-Save**: Your tasks are automatically saved - no worries about losing anything!
 
@@ -36,12 +36,13 @@ That's it! You're ready to go! 🎉
 ### Commands You Can Use
 
 - **`list`** 📋 - See all your tasks at once!
-- **`todo <description>`** ➕ - Add a simple todo task
-- **`deadline <description> / <date>`** ⏰ - Add a deadline (date format: YYYY-MM-DD)
-- **`event <description> / <start> / <end>`** 📅 - Add an event with start and end dates
+- **`todo <description> [priority]`** ➕ - Add a simple todo task
+- **`deadline <description> / <date> [priority]`** ⏰ - Add a deadline (date format: YYYY-MM-DD)
+- **`event <description> / <start> / <end> [priority]`** 📅 - Add an event with start and end dates
 - **`mark <index>`** ✅ - Mark a task as done (feels so good!)
 - **`unmark <index>`** 🔄 - Oops, need to unmark? No problem!
 - **`delete <index>`** 🗑️ - Remove a task you don't need anymore
+- **`priority <level>`** 〽️ - Retrieve tasks with certain priority (1 highest, 3 lowest)
 - **`find <keyword>`** 🔍 - Search for tasks by keyword
 - **`bye`** 👋 - Say goodbye to Doraemon (he'll remember everything!)
 
@@ -49,10 +50,11 @@ That's it! You're ready to go! 🎉
 
 ```
 todo read book 📖
-deadline assignment1 / 2026-02-05 📝
-event lab2 / 2026-02-19 / 2026-03-01 🧪
+deadline assignment1 / 2026-02-05 [1]📝
+event lab2 / 2026-02-19 / 2026-03-01 [2] 🧪
 mark 1 ✨
 find book 🔎
+priority 1 〽️
 list 📋
 bye 👋
 ```
