@@ -1,4 +1,6 @@
-T | 1 | eat food | 2
 E | 0 | lab2 | 2026-02-19 | 2026-03-01 | 2
 T | 0 | play 1 | 2
 T | 0 | walk | 1
+T | 0 | party 1 | 2
+T | 0 | party | 1
+T | 0 | eat | 2

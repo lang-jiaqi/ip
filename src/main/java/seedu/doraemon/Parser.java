@@ -90,22 +90,45 @@ public class Parser {
         if (arguments.isEmpty()) {
             throw new DoraemonException("The description of a todo cannot be empty");
         }
-        
-        String[] parts = arguments.split(" / ", 2);
-        String description = parts[0].trim();
+
+        String raw = arguments.trim();
+        String description;
         int priority = 2; // Default priority
-        
-        if (parts.length == 2) {
+
+        // New format: "description [priority]"
+        int openBracket = raw.lastIndexOf('[');
+        int closeBracket = raw.lastIndexOf(']');
+        if (openBracket != -1 && closeBracket > openBracket) {
+            description = raw.substring(0, openBracket).trim();
+            String priorityText = raw.substring(openBracket + 1, closeBracket).trim();
             try {
-                priority = Integer.parseInt(parts[1].trim());
+                priority = Integer.parseInt(priorityText);
                 if (priority < 1 || priority > 3) {
                     throw new DoraemonException("Priority must be 1, 2, or 3");
                 }
             } catch (NumberFormatException e) {
                 throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
             }
+        } else {
+            // Backwards-compatible format: "description / priority" or just "description"
+            String[] parts = raw.split(" / ", 2);
+            description = parts[0].trim();
+            if (parts.length == 2) {
+                try {
+                    priority = Integer.parseInt(parts[1].trim());
+                    if (priority < 1 || priority > 3) {
+                        throw new DoraemonException("Priority must be 1, 2, or 3");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
+                }
+            }
         }
-        
+
+        if (description.isEmpty()) {
+            throw new DoraemonException("The description of a todo cannot be empty");
+        }
+
         ToDo todo = new ToDo(description, priority);
         return new AddCommand(todo);
     }
@@ -123,16 +146,12 @@ public class Parser {
         if (dParts.length < 2) {
             throw new DoraemonException("Deadline format: description / by date [/ priority]");
         }
-        
+
         String description = dParts[0].trim();
-        LocalDate date;
-        try {
-            date = LocalDate.parse(dParts[1].trim());
-        } catch (DateTimeParseException e) {
-            throw new DoraemonException(DATE_FORMAT_HINT);
-        }
+        String dateString = dParts[1].trim();
         int priority = 2; // Default priority
-        
+
+        // Old style: third part is explicit priority "description / date / priority"
         if (dParts.length == 3) {
             try {
                 priority = Integer.parseInt(dParts[2].trim());
@@ -142,8 +161,31 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
             }
+        } else {
+            // New style: priority in square brackets after date, e.g. "description / 2025-02-22 [1]"
+            int openBracket = dateString.lastIndexOf('[');
+            int closeBracket = dateString.lastIndexOf(']');
+            if (openBracket != -1 && closeBracket > openBracket) {
+                String priorityText = dateString.substring(openBracket + 1, closeBracket).trim();
+                dateString = dateString.substring(0, openBracket).trim();
+                try {
+                    priority = Integer.parseInt(priorityText);
+                    if (priority < 1 || priority > 3) {
+                        throw new DoraemonException("Priority must be 1, 2, or 3");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
+                }
+            }
         }
-        
+
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateString);
+        } catch (DateTimeParseException e) {
+            throw new DoraemonException(DATE_FORMAT_HINT);
+        }
+
         Deadline deadline = new Deadline(description, priority, date);
         return new AddCommand(deadline);
     }
@@ -161,18 +203,13 @@ public class Parser {
         if (eParts.length < 3) {
             throw new DoraemonException("Event format: description / from start / to end [/ priority]");
         }
-        
+
         String description = eParts[0].trim();
-        LocalDate dateFrom;
-        LocalDate dateTo;
-        try {
-            dateFrom = LocalDate.parse(eParts[1].trim());
-            dateTo = LocalDate.parse(eParts[2].trim());
-        } catch (DateTimeParseException e) {
-            throw new DoraemonException(DATE_FORMAT_HINT);
-        }
+        String startString = eParts[1].trim();
+        String endString = eParts[2].trim();
         int priority = 2; // Default priority
-        
+
+        // Old style: fourth part is explicit priority "description / start / end / priority"
         if (eParts.length == 4) {
             try {
                 priority = Integer.parseInt(eParts[3].trim());
@@ -182,8 +219,33 @@ public class Parser {
             } catch (NumberFormatException e) {
                 throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
             }
+        } else {
+            // New style: priority in square brackets after end date, e.g. "description / start / end [1]"
+            int openBracket = endString.lastIndexOf('[');
+            int closeBracket = endString.lastIndexOf(']');
+            if (openBracket != -1 && closeBracket > openBracket) {
+                String priorityText = endString.substring(openBracket + 1, closeBracket).trim();
+                endString = endString.substring(0, openBracket).trim();
+                try {
+                    priority = Integer.parseInt(priorityText);
+                    if (priority < 1 || priority > 3) {
+                        throw new DoraemonException("Priority must be 1, 2, or 3");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new DoraemonException("Invalid priority format. Use 1, 2, or 3");
+                }
+            }
         }
-        
+
+        LocalDate dateFrom;
+        LocalDate dateTo;
+        try {
+            dateFrom = LocalDate.parse(startString);
+            dateTo = LocalDate.parse(endString);
+        } catch (DateTimeParseException e) {
+            throw new DoraemonException(DATE_FORMAT_HINT);
+        }
+
         Event event = new Event(description, priority, dateFrom, dateTo);
         return new AddCommand(event);
     }
