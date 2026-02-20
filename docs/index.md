@@ -10,6 +10,8 @@ Welcome to Doraemon! Your friendly personal schedule assistant! 🎯
 
 ## 💬 Commands
 
+### View all Commands
+- **`hi`** 📋 - Show all commands and how to use them
 ### View Tasks
 - **`list`** 📋 - Show all your tasks
 
